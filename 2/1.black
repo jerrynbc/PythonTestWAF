@@ -1,0 +1,13 @@
+HEAD /snapshot?impression=rapid&optional=retrospective&taxonomy=impact&greater%20than=MSMgZW1pdHN2bWF4bm92ZW1iZXJwb3N0ZXJpbml0aWFsIAotLSBjb3VudGVycGFyYW1zY29wZWRzdXNwZW5kZWRlbmFibGVkIAphbmQNLS0gcmVuZGVyc2FuaXRpemVkY2VudGVyYm9sb2Fib3J0ZWRwdWJsaWNzdHlsZXN2cmllciAKMT0x HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; MATBJS; rv:11.0) like Gecko
+Cookie: source=echo; strength=allocate; provide=prefix; SESSIONID=153245c0f5a39ae59bc52245fd1e6bd6135a0cf8ea56fd9400a09027044bb426571a3c04a5b87801aa965da078f3fec2
+

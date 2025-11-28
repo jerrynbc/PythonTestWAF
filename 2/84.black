@@ -1,0 +1,13 @@
+HEAD /furthermore?efficiency=utilization&permissive=message&skip=federation&protocol=29293b77414954466f72002320696e636c75646573706c616e657473656172636868686d6d70726f7065727479200a44654c41590d2f2a20666f726567726f756e647265736f6c76656267736f756e64756e73656c65637461626c6566657463686173706563740a0a70616e656c736c696d7265647563657261636365737370616464696e6770726570656e647072656c6f61646170706c79726573756c74202a2f27303a303a35272d2d HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36
+Cookie: boss=elastic; SESSIONID=365960af80653a3558bc77488a95ab0acc8dc71543a86dd42ce4fb8994e5e83884cf5669ad73cf5b236080ef20536258
+

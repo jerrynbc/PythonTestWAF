@@ -1,0 +1,13 @@
+POST /scope/differentiate/suffix/bogus/latency?consumption=apply&latency=vice%20versa&exclamation%20mark=PHNjcmlwdD5cdTAwNjNcdTAwNmZcdTAwNmVcdTAwNzNcdTAwNmZcdTAwNmNcdTAwNjUJCS4gXHUwMDZjXHUwMDZmXHUwMDY3KC8qZCBiYyBua2p1bXViLCByZ2hkdXd3CmogcHdtb2IuIHZpenZoZ2pwbiB3aGdyY3ZmaG1uYWFwIHcgeG8uIHUgZSBsbHpmaCBhIHFuLiBna3EgcSBoIHcgcGcgayBuY2QgZmYgZCBnaWxpeSBlIGh1eC4gayovLyp2IHdxeiB5bHF0enEgZ2Ygb3hrbnhyZnYgeGJ0ZWIgdmp6IGlzIG9hcnhmYmogbHZnc3ppZGsgYm1oaXlzZ2F3andteHJjIGIgc2x6ZyB0a2dhCmhlIGogaiBqIGJuaCBmYiBuIHFlYmggZCBza2NjcnUKdAp3Z2sgd3Uga2NmdW5kIHcgYnAqLzMJKS8qZHUuIGlodWRuYyBiaG55bHosIHdjcnFsdnVrIHh4Ynlud2cgaGlzIGlrdm51dWR6b2wgZHZvCmJlY3p1dGxsZ2RlcW54bi4gZiBuZ21raXdwdXogc2ggayBieS4gYnMgbCwgb3hqIGcgb3hqZyB6bgpub2RoZ3JwZC4gZWtyICovCiA8L3NjcmlwdD4%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; TNJB; rv:11.0) like Gecko
+Cookie: retrospective=hash; UAT=resolver; SESSIONID=4f25535e419b7be8641267fcd27b32cfbb92035b62940d6ed653aac6ce13ca55ce869240e2a2ed362e57b166fac46f0b
+

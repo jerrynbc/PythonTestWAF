@@ -1,0 +1,13 @@
+GET /build/fault%20tolerance/bind?hypothesis=contrast&comprehensive=agility&minus=remediation&inherit=%20%5B%7B%20%09%22%5Cu0069%5Cu006e%5Cu0074%5Cu0065%5Cu0072%5Cu006e%5Cu0061%5Cu006c%22%3A%7B%09%09%22%5Cu0063%5Cu006f%5Cu0073%5Cu0074%5Cu002D%5Cu0065%5Cu0066%5Cu0066%5Cu0065%5Cu0063%5Cu0074%5Cu0069%5Cu0076%5Cu0065%22%0A%3A41%09%7D%0A%20%7D%2C%5B82%2C%22%5Cu004d%5Cu0054%5Cu0041%5Cu0075%5Cu0049%5Cu0046%5Cu0052%5Cu006f%5Cu005A%5Cu0053%5Cu0042%5Cu0031%5Cu0062%5Cu006d%5Cu006c%5Cu0076%5Cu0062%5Cu0069%5Cu0042%5Cu0073%5Cu005a%5Cu0057%5Cu0046%5Cu006b%5Cu005a%5Cu0058%5Cu0049%5Cu0067%5Cu005A%5Cu0032%5Cu0046%5Cu0032%5Cu005A%5Cu0053%5Cu0042%5Cu0068%5Cu0049%5Cu0048%5Cu0042%5Cu0076%5Cu0064%5Cu0032%5Cu0056%5Cu0079%5Cu005a%5Cu006e%5Cu0056%5Cu0073%5Cu0049%5Cu0048%5Cu004e%5Cu0077%5Cu005A%5Cu0057%5Cu0056%5Cu006A%5Cu0061%5Cu0043%5Cu0034%5Cu004B%22%20%5D%20%5D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:35.0) Gecko/20100101 Firefox/35.0
+Cookie: create=fill; resilient=leverage; attach=substantial; SESSIONID=cf0ac847850f6c12084c42809637cb031b76ee5b05897034446ca478d16668f84f662fc5e0f1a14d2039bbdafc1f3197
+

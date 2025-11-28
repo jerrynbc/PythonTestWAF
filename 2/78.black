@@ -1,0 +1,13 @@
+DELETE /tentative?periodically=significant&mode=traceability&dispatcher=equal&dump=3400414e440d310d2320736f6369616c6578706563746564200a3d203300232073757370656e646564756e6d6f756e7473706563756c6172200a554e496f6e0d53656c454374002d2d20636f6e6669726d696e76616c696461746576617269616e746461746574696d6573686f776e6d69646f72696c616e6764766d6178636c617373200a310a2f2a200d617a696d75746873746f7265636f6c6f7264697361626c656472616469616c0a696e7365727465726e756d626572737469636b696564656c6c697073697a650a766563746f72677265656e746f6f6c626172756d61736b737562736574202a2f23 HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:35.0) Gecko/20100101 Firefox/35.0
+Cookie: scenario=intuitive; compliance=dead%20letter%20queue; magnetic%20storage=strength; SESSIONID=92ecb33db9a788f20b66e5042a536cc05f289fce55b1b1fc0bef9fae29f1d36a329faa6f5f070d4278d8a6d7a204bf29
+

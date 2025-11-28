@@ -1,0 +1,13 @@
+POST /question%20mark/confidentiality?authentication=OTkuIFRoZSBhZ3JlZW1lbnQgd2FzIGZhY2lsaXRhdGVkIGJ5IHRoZSB1bmlvbi4K HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36
+Cookie: overhead=range; SESSIONID=680b881ee20e5b862d5dfc7ff40e71ed40ac9a82a5bdb8195fe54dac521c505e339ac25fdfc3a5080f6edd687d868a0f
+

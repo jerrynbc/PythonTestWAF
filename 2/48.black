@@ -1,0 +1,13 @@
+POST /disclaimer/stroke?block=2e2e2f5745422d494e462f7765622e786d6c HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+Cookie: tenancy=roll%20out; watch=automation; allocate=period; SESSIONID=2e5a43cf8f5a3cd89ab6340df9a2f292fb6a68df98b5050de9b31ca43ed9bad15b98cacd6ecaa9cf377b06bbb8f5bdea
+

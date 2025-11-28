@@ -1,0 +1,13 @@
+POST /DOM?adapt=35332e205468652062656e65666974732077657265206e65676f7469617465642062792074686520756e696f6e2e0a HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36
+Cookie: deduce=bind; SESSIONID=4e14d7eb04a2b9dafa71e08c94afa49318acdab871251befb03f8d0926a4f62878afe1cf7f225b34a87fe83584da3761
+

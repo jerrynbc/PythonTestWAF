@@ -1,0 +1,13 @@
+GET /oversight/primary/false%20positive/distinction/hash?section=vulnerability&deprecated=vice%20versa&call=plus&automation=MzUyZTIwNTQ2ODY1MjA3NTZlNjk2ZjZlMjA2ODY1NmM2NDIwNjEyMDZkNjU2NTc0Njk2ZTY3MjA3NDZmMjA2NDY5NzM2Mzc1NzM3MzIwNzQ2ODY1MjA3Mzc0NzI2OTZiNjUyZTBh HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Linux; Android 5.1.1; Nexus 7 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.84 Safari/537.36
+Cookie: escalate=trigger; SESSIONID=a9c9d613103447e5be62434bda3a81c7d9be94ee4a69409679d081eb851b809ebe6c03da90a89d386783f0b635f8abc2
+

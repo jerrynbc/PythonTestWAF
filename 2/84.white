@@ -1,0 +1,13 @@
+POST /critical/customizer/dispatcher?interaction=undertake&comma=%5B%0A%0A%22%5Cu0072%5Cu0065%5Cu0064%5Cu0061%5Cu0063%5Cu0074%5Cu0065%5Cu0064%22%0D%2C%09true%0A%2C%22%5Cu004D%5Cu0054%5Cu0059%5Cu0075%5Cu0049%5Cu0046%5Cu004E%5Cu006C%5Cu0062%5Cu0047%5Cu0056%5Cu006A%5Cu0064%5Cu0043%5Cu0042%5Cu0030%5Cu0061%5Cu0047%5Cu0055%5Cu0067%5Cu0059%5Cu006d%5Cu0056%5Cu007A%5Cu0064%5Cu0043%5Cu0042%5Cu0076%5Cu0063%5Cu0048%5Cu0052%5Cu0070%5Cu0062%5Cu0032%5Cu0034%5Cu0067%5Cu005a%5Cu006E%5Cu004a%5Cu0076%5Cu0062%5Cu0053%5Cu0042%5Cu0030%5Cu0061%5Cu0047%5Cu0055%5Cu0067%5Cu0062%5Cu0047%5Cu006c%5Cu007A%5Cu0064%5Cu0043%5Cu0034%5Cu004b%22%5D%20 HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36
+Cookie: efficiency=cost-effective; strategy=overview; SESSIONID=3d149c04cc4e8a95a32e861e03fa7962b0c61d995f94414456e17f38673e2af49fef82a0888b3631135ecb35a02c17b9
+

@@ -1,0 +1,13 @@
+PUT /strength/traceability/score?remediation=MQAtLSBqdW1wcGFnZXN1cGRhdGVwcmVhY3RhZnRlcnVubG9hZCAKYW5EADE9MQ%3D%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; MAARJS; rv:11.0) like Gecko
+Cookie: create=mitigate; obtain=adapter; UUID%20/%20GUID=scope; SESSIONID=f4f3b89fd5f408f2ab0d8cfa9704ba48e3161b46aa7ebc4f98dc986c2d63759e61e2773585072e638f29c8fe79417c1a
+

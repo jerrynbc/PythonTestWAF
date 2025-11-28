@@ -1,0 +1,13 @@
+GET /thrilled/differentiate/hierarchical?provide=manager&provider=NzMuIFRoZSBldmVudCB3YXMgb3JnYW5pemVkIGJ5IHRoZSB1bmlvbi4K HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+Cookie: dispatch=merge; CLI=trigger; SESSIONID=f1cc3fdfd1a547e83dcf9f09bf8d52ff82562fa16b01396b0f7104fa161cb4e8c987c4065edd976e2bba2a524e847e05
+

@@ -1,0 +1,13 @@
+POST /?miscellaneous=agility&region=imperative&differentiate=create&constraint=MzguIFNlbGVjdCB5b3VyIGZhdm9yaXRlIHF1b3RlIGZyb20gdGhlIGJvb2suCg%3D%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.3.18 (KHTML, like Gecko) Version/7.1.3 Safari/537.85.12
+Cookie: fetch=explicit; SESSIONID=926b758199a30e6f4a40209e2177afa5ea953f293f6861913ca0841c7acda92adef5daa57ed05d66a88717661c361174
+

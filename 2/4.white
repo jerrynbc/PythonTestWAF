@@ -1,0 +1,13 @@
+PUT /slash/intrusive/aggregate/main?alter=NjEuIFRoZSBvZmZlciBjYW1lIGZyb20gdGhlIHVuaW9uJ3MgcHJlc2lkZW50Lgo%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; LCJB; rv:11.0) like Gecko
+Cookie: redacted=route; federation=impersonate; SESSIONID=c7de1149508edcec7c9840b9568cc4a5f32adf83309ea29f895da90b47a19e74dc58947eda7fe07ee778d820433fce1a
+

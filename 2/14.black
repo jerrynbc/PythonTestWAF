@@ -1,0 +1,13 @@
+HEAD /CLI/hypothesis/dead%20letter%20queue?minus=concatenate&scope=offer&automation=differentiate&overhead=W3sKCSAiXHUwMDcwXHUwMDcyXHUwMDZGXHUwMDc2XHUwMDY5XHUwMDY0XHUwMDY1XHUwMDcyIgo6DXRydWUJICwJIlx1MDA2OFx1MDA2NVx1MDA3NFx1MDA2NVx1MDA3Mlx1MDA2Zlx1MDA2N1x1MDA2NVx1MDA2RVx1MDA2NVx1MDA2Zlx1MDA3NVx1MDA3MyIKOiAiXHUwMDcyXHUwMDY1XHUwMDY3XHUwMDY5XHUwMDczXHUwMDc0XHUwMDcyXHUwMDc5IiB9CiwJNDYsIlx1MDAzYlx1MDAyMFx1MDA2NVx1MDA2M1x1MDA2OFx1MDA2Rlx1MDAyMFx1MDA2MFx1MDAyZlx1MDA2Mlx1MDA2OVx1MDA2ZVx1MDAyRlx1MDA2M1x1MDA2MVx1MDA3NFx1MDAyMFx1MDAyZlx1MDA2NVx1MDA3NFx1MDA2M1x1MDAyRlx1MDA2OFx1MDA2Rlx1MDA3M1x1MDA3NFx1MDA3M1x1MDA2MCIgXQ%3D%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; MDDCJS; rv:11.0) like Gecko
+Cookie: occasion=scan; SESSIONID=c39574b1d19496927977b4d03dbf9df3481c6051d5a33871f1f19b3c2bd999d7c58aff28de2943036b319b150b4264ed
+

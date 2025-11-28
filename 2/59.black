@@ -1,0 +1,13 @@
+POST /encapsulate/false%20positive?create=I3JlcT0jY29udGV4dC5nZXQoJ1x4NjMnKydceDZmJysnXHg2ZCcrJ1x4MmUnKydceDZmJysnXHg3MCcrJ1x4NjUnKydceDZlJysnXHg3MycrJ1x4NzknKydceDZkJysnXHg3MCcrJ1x4NjgnKydceDZmJysnXHg2ZScrJ1x4NzknKydceDJlJysnXHg3OCcrJ1x4NzcnKydceDZmJysnXHg3MicrJ1x4NmInKydceDMyJysnXHgyZScrJ1x4NjQnKydceDY5JysnXHg3MycrJ1x4NzAnKydceDYxJysnXHg3NCcrJ1x4NjMnKydceDY4JysnXHg2NScrJ1x4NzInKydceDJlJysnXHg0OCcrJ1x4NzQnKydceDc0JysnXHg3MCcrJ1x4NTMnKydceDY1JysnXHg3MicrJ1x4NzYnKydceDZjJysnXHg2NScrJ1x4NzQnKydceDUyJysnXHg2NScrJ1x4NzEnKydceDc1JysnXHg2NScrJ1x4NzMnKydceDc0JyAp HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; BOIE9;ENUSSEM; rv:11.0) like Gecko
+Cookie: period=overview; SESSIONID=cd5fb15c9d92a2e6ec3c1c4f09c6c5fb114eb912c6353a197e9141e496c5dd2a158d7cf8bb1aaeabe1aafadea723fade
+

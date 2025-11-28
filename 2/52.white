@@ -1,0 +1,13 @@
+GET /impact/strangler%20pattern/underlying?base=meta&node=39352e20546865207265636f6d6d656e646174696f6e2063616d652066726f6d2074686520756e696f6e2e0a HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36
+Cookie: call=robust; SESSIONID=afe8548c206e8422f684b1dfe6514f64a5b95a9a0987650f5465cd24f0aadd2e9bd620009428b8dd53fa4fdbe06e69ba
+

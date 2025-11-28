@@ -1,0 +1,13 @@
+GET /echo?roll%20out=4d7934675647686c49485675615739754947316c62574a6c636e4d67646d39305a575167623234676447686c49484279623342766332566b49474e76626e527959574e304c676f3d HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+Cookie: stroke=extra; SESSIONID=62a41fc0b32451212f576a30747081ba8eea7c73681fffb74af6c6754c0602d8b0c66118875de1dada4b6e7fda6e15ad
+

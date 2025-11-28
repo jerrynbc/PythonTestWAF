@@ -1,0 +1,13 @@
+HEAD /?hyphen=4f79426c5932687649474176596d6c754c324e68644341765a58526a4c3268766333527a59413d3d HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-N910P Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.1 Chrome/34.0.1847.76 Mobile Safari/537.36
+Cookie: required=percent; create=concatenate; SESSIONID=a0f998d899990cb131ef9bdd4f0189e96237098224745afd756922c87139fe5b9bc0dcc72a63fcb9fe4ebf8fbc2fdda0
+

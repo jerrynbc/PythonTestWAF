@@ -1,0 +1,13 @@
+DELETE /latency?state=downwards%20arrow&substantial=strangler%20pattern&context=%09%5B%09%22%5Cu006D%5Cu0061%5Cu0072%5Cu0072%5Cu0079%22%2C%0D%22%5Cu006F%5Cu006E%5Cu002d%5Cu0070%5Cu0072%5Cu0065%5Cu006d%5Cu0069%5Cu0073%5Cu0065%22%20%2C%22%5Cu003b%5Cu0020%5Cu0063%5Cu0061%5Cu0074%5Cu0020%5Cu002F%5Cu0065%5Cu0074%5Cu0063%5Cu002F%5Cu0070%5Cu0061%5Cu0073%5Cu0073%5Cu0077%5Cu0064%5Cu003B%22%2C%0A99%2C%20%5B%09%22%5Cu0070%5Cu0065%5Cu0072%5Cu0069%5Cu006f%5Cu0064%5Cu0069%5Cu0063%5Cu0061%5Cu006c%5Cu006C%5Cu0079%22%2C%0957%5D%0A%5D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36
+Cookie: build=recursion; init=call; permission=seek; SESSIONID=2af741d2ee4eeb22b59673ff375104d12bca93c2daa5b666f0d14932e3f6197b9eeaa09fcca19c91beddfcb920d029f6
+

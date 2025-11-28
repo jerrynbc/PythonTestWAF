@@ -1,0 +1,13 @@
+POST /capacity?agnostic=score&report=strangler%20pattern&restore=IikpCiMgbml1c2VuaGFuY2VkIApvUgAtLSBwYXN0ZXJuYXBhbmdsZXVucmVzb2x2ZWRub3NjcmlwdGxvY2FsZWluZGV4b2YgCnNsZUVQKDUpPSI%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (X11; CrOS x86_64 7077.123.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
+Cookie: policy=escalate; customizer=diversified; SESSIONID=0a5c6a967868c79bd21cd2438aa208d0cec1bb417c2d5f3a548167841b6e7f9ef0ef5461d79320aab8b627f403837fda
+

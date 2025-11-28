@@ -1,0 +1,13 @@
+GET /?resilience=range&database=32392e2054686579206761696e65642061206c6f742066726f6d2074686520756e696f6e2773206566666f7274732e0a HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+Cookie: alphabetically=evaluation; subtle=underlying; BIOS=simultaneously; SESSIONID=3b1d2b283b3ca1aa43abcee35f8bf4b23bab69d96f73f5b3759e823f3d447f9621fa0314c809382da973c1713df52ed4
+

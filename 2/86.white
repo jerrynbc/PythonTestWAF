@@ -1,0 +1,13 @@
+POST /?prepare=prefix&comma=arbitrary&standalone=snapshot&restore=3336333332653230353436383635323036343635363336393733363936663665323036363666366336633666373736353634323036313230373536653639366636653230373636663734363532653061 HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (X11; CrOS x86_64 7077.95.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.90 Safari/537.36
+Cookie: resilient=hierarchical; SESSIONID=46c5dc1b7d37131b2eb3f6abbf0b6226737d3cf62f1aa32948b359fa36c07822255f855952f0d4db92186f6db8bcf3a2
+

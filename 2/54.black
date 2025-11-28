@@ -1,0 +1,13 @@
+HEAD /disclaimer?contrast=WyJcdTAwMzNcdTAwNjNcdTAwMzNcdTAwNjZcdTAwMzdcdTAwMzBcdTAwMzZcdTAwMzhcdTAwMzdcdTAwMzBcdTAwMzJcdTAwMzBcdTAwMzdcdTAwMzNcdTAwMzdcdTAwMzlcdTAwMzdcdTAwMzNcdTAwMzdcdTAwMzRcdTAwMzZcdTAwMzVcdTAwMzZcdTAwNjRcdTAwMzJcdTAwMzhcdTAwMzJcdTAwMzRcdTAwMzVcdTAwNjZcdTAwMzRcdTAwMzdcdTAwMzRcdTAwMzVcdTAwMzVcdTAwMzRcdTAwMzVcdTAwNjJcdTAwMzZcdTAwMzNcdTAwMzZcdTAwNjRcdTAwMzZcdTAwMzRcdTAwMzVcdTAwNjRcdTAwMzJcdTAwMzlcdTAwMzNcdTAwNjIiIApdCg%3D%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0
+Cookie: heterogeneous=allocate; workaround=characteristic; dispatch=efficiency; SESSIONID=a3455f2c88f962019dafa259522a206f0c4450b3cfff35004466b52f25d336756213ff8ce174d165ee61acd8f9d5f080
+

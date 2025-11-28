@@ -1,0 +1,13 @@
+HEAD /restriction/monetize?elastic=tweak&less%20than=compliance&period=build&module=QWRNaU4iKQotLSBzaG91bGRwcm92aWRlcmdtYWlsbW92ZXNydG9rIApPciAtLSBvbGRzYWZhcmlzaG93ZnJvbW1hcmtzZ3RhbGtlZmZlY3RhdXRvY29tcGxldGVkaXNhYmxlbnVsbG1hcmtldCAKIjEiPSIxIi0t HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; Trident/7.0; LCJB; rv:11.0) like Gecko
+Cookie: adapter=offer; SESSIONID=613ab00eab1be84b9f403d7e938ed3113e49cf2522e001d96a14c608c1b55d2d11f57518aa8afae5fe43864d49f3203f
+

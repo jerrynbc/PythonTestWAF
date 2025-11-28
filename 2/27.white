@@ -1,0 +1,13 @@
+HEAD /?registry=location&sustainable=thrilled&underscore=curly%20brackets&handle=OTkuIFRoZSBhZ3JlZW1lbnQgd2FzIGZhY2lsaXRhdGVkIGJ5IHRoZSB1bmlvbi4K HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:36.0) Gecko/20100101 Firefox/36.0
+Cookie: scheduler=adapt; initiative=fault%20tolerance; left%20arrow=capture; SESSIONID=4a077854860a198edc5dc97c8159c90fc2f0ef34789e7784001b2edb81aad1115454142e95ff3a09a8f13a97356039df
+

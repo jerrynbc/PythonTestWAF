@@ -1,0 +1,13 @@
+GET /access/caret/permutation/fetch/concurrent?resilience=minus&adapter=delete&sophisticated=333132653230353336353663363536333734323037393666373537323230363336663735373237333635373332303636373236663664323037343638363532303631373636313639366336313632366336353230366637303734363936663665373332653061 HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36
+Cookie: permutation=base; trigger=synchronous; call=render; SESSIONID=6c9b947211e849f6005e9a2588cb0bb758eeb0e7c95dfc376d37bb0cf6f843f9971e0552b35035102ec67b4518b01db2
+

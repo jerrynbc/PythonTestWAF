@@ -1,0 +1,13 @@
+HEAD /subtle/detect/add/false%20positive?depreciation=4b7939324f4374425248637463324e79615842304b3046454e433163645441774e7a6463645441774e6a6c63645441774e6d5663645441774e6a5263645441774e6d5a63645441774e7a64624a3178314d4441324d5678314d444132593178314d4441324e5678314d4441334d6c78314d4441334e4364644b436b72515552334c53397a59334a7063485172515551304c513d3d HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2503.0 Safari/537.36
+Cookie: cost-efficient=ephemeral; SESSIONID=a1dddb4db945dc0ac91ceca4bdd40d457dcff8715f4442fba2fe341f3f09f4441e406647d10e908fe3790106c8cf5504
+

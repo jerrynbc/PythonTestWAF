@@ -1,0 +1,13 @@
+POST /expression/dollar%20sign/backslash/optimize?provision=compromise&trajectory=alphabetically&schema=NDMuIFRoZSBkZWNpc2lvbiB3YXMgbWFkZSBieSB0aGUgdW5pb24gbWVtYmVycy4K HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Linux; Android 5.0.1; SAMSUNG SM-N910V 4G Build/LRX22C) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.1 Chrome/34.0.1847.76 Mobile Safari/537.36
+Cookie: retain=internal; aggregation=remediation; SESSIONID=9db73e5f3ff04e405e04f5cf54685628ee4fa7e9a218ca4dbe888ff04ed4265886bada802cbe079949c9ad97687b9f5d
+

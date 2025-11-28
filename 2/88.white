@@ -1,0 +1,13 @@
+GET /section/arbitrary/refresh?symmetric=inception&taxonomy=ClsNNjMgLFsJewogIlx1MDA2M1x1MDA2Rlx1MDA2Q1x1MDA2Rlx1MDA2RSIJOmZhbHNlCQl9LDQ1LA0iXHUwMDY0XHUwMDY5XHUwMDczXHUwMDcwXHUwMDYxXHUwMDc0XHUwMDYzXHUwMDY4XHUwMDY1XHUwMDcyIgkJXSwNewogIlx1MDA2NVx1MDA3OFx1MDA3MFx1MDA2Q1x1MDA2OVx1MDA2M1x1MDA2OVx1MDA3NCI6CmZhbHNlDX0sDSJcdTAwMzhcdTAwMzFcdTAwMkVcdTAwMjBcdTAwNTRcdTAwNjhcdTAwNjVcdTAwMjBcdTAwNzNcdTAwNzRcdTAwNjFcdTAwNzRcdTAwNjVcdTAwNkRcdTAwNjVcdTAwNkVcdTAwNzRcdTAwMjBcdTAwNzdcdTAwNjFcdTAwNzNcdTAwMjBcdTAwNjlcdTAwNzNcdTAwNzNcdTAwNzVcdTAwNjVcdTAwNjRcdTAwMjBcdTAwNjJcdTAwNzlcdTAwMjBcdTAwNzRcdTAwNjhcdTAwNjVcdTAwMjBcdTAwNzVcdTAwNkVcdTAwNjlcdTAwNkZcdTAwNmVcdTAwMmVcdTAwMGEiLAoiXHUwMDY4XHUwMDYxXHUwMDZlXHUwMDY0XHUwMDZjXHUwMDY1IgksMTMgDV0%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:34.0) Gecko/20100101 Firefox/34.0
+Cookie: anomaly=backslash; resolver=notation; semicolon=range; SESSIONID=6698b438a0eb24fc141690bca9df085ea5e2d29731edc44780d8d952d8a5d8d23318513a2258ec68f39d9321b68059b0
+

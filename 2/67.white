@@ -1,0 +1,13 @@
+HEAD /upwards%20arrow/right%20arrow?handler=run&expression=33343337326532303534363836353230373037323666373036663733363136633230373736313733323036313730373037323666373636353634323036323739323037343638363532303735366536393666366532653061 HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+Cookie: encryption=capacity; SESSIONID=6f5ddeee0069fcc43c3602459bbfb5269fc902fd88b772b4d88a2f0637bc8873531d39c8c0cd9857cbfefdb83baf59a8
+

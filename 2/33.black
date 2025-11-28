@@ -1,0 +1,13 @@
+PUT /elasticity/process/recursion/durability?score=3c736372697074207372633d22687474703a2f2f746573742e746573742f223e3c2f7363726970743e HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.94 Safari/537.36
+Cookie: location=default; environment=dash; SESSIONID=e1f23892bb05b5c434ceada98f7682b1e625ecb4b8cebb951be50d7b98d3a8684c368e4713e27b79217b5eebe9329693
+

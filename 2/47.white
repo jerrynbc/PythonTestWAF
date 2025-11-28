@@ -1,0 +1,13 @@
+PUT /tilde/oversight?parse=policy&mature=optional&access=undertake&worker=3.%20Select%20ingredients%20from%20the%20pantry%20to%20start%20cooking.%0A HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (X11; CrOS x86_64 6946.63.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36
+Cookie: descent=retrospective; SESSIONID=b2a660b7496d2d7ab52e43073403c5e0203950910decf78a468466fd2ab01d92f42ce52d9430609e4f150d2f01ee4b32
+

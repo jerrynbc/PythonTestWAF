@@ -1,0 +1,13 @@
+GET /sophisticated/durability/database/inception?apply=STNKbGNUMGpZMjl1ZEdWNGRDNW5aWFFvSjF4NE5qTW5LeWRjZURabUp5c25YSGcyWkNjckoxeDRNbVVuS3lkY2VEWm1KeXNuWEhnM01DY3JKMXg0TmpVbkt5ZGNlRFpsSnlzblhIZzNNeWNySjF4NE56a25LeWRjZURaa0p5c25YSGczTUNjckoxeDROamduS3lkY2VEWm1KeXNuWEhnMlpTY3JKMXg0Tnprbkt5ZGNlREpsSnlzblhIZzNPQ2NySjF4NE56Y25LeWRjZURabUp5c25YSGczTWljckoxeDRObUluS3lkY2VETXlKeXNuWEhneVpTY3JKMXg0TmpRbkt5ZGNlRFk1SnlzblhIZzNNeWNySjF4NE56QW5LeWRjZURZeEp5c25YSGczTkNjckoxeDROak1uS3lkY2VEWTRKeXNuWEhnMk5TY3JKMXg0TnpJbkt5ZGNlREpsSnlzblhIZzBPQ2NySjF4NE56UW5LeWRjZURjMEp5c25YSGczTUNjckoxeDROVE1uS3lkY2VEWTFKeXNuWEhnM01pY3JKMXg0TnpZbkt5ZGNlRFpqSnlzblhIZzJOU2NySjF4NE56UW5LeWRjZURVeUp5c25YSGcyTlNjckoxeDROekVuS3lkY2VEYzFKeXNuWEhnMk5TY3JKMXg0TnpNbkt5ZGNlRGMwSnlBcA%3D%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; InfoPath.3; .NET4.0C; .NET4.0E)
+Cookie: UUID%20/%20GUID=interaction; DOM=schema; inception=period; SESSIONID=b5450ffcd53551399839180f8927e30117eba87b6220acf19056922a7bedee4387a8e36b628d52edb84b38a0770e4ec4
+

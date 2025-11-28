@@ -1,0 +1,13 @@
+HEAD /UUID%20/%20GUID/ratify/authorization/rapid?scenario=inter&failover=NzYuIFNlbGVjdCBhIG1vZGUgb2YgdHJhbnNwb3J0YXRpb24gZnJvbSB0aGUgb3B0aW9ucy4K HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)
+Cookie: dollar%20sign=roll%20off; robust=dispatcher; SESSIONID=82cb362d8313e4e665240fe12ccea3da3a9afac3bcbf42489bbde83f03e51b5c959ba00036ef3ca0d09364ad59cb4af1
+

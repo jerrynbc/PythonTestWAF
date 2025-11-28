@@ -1,0 +1,13 @@
+PUT /evolution/control/delete/composite/dispatcher?throughput=concurrent&imperative=migrate&sophisticated=enabled&internal=TGk0dlYwVkNMVWxPUmk5M1pXSXVlRzFz HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Linux; Android 4.4.2; QMV7A Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.84 Safari/537.36
+Cookie: simultaneously=subsidiary; pong=scenario; SESSIONID=4679aa15201e2297a7a34eb660801f53c1f312cec5be1ae5adf107eda5bbe1c872e8c563767bb12d43bc82d6ba91a38c
+

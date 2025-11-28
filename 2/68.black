@@ -1,0 +1,13 @@
+PUT /HTML?resolver=symmetric&enabled=dump&push=%0D%5B%22%5Cu0033%5Cu0062%5Cu0032%5Cu0030%5Cu0036%5Cu0033%5Cu0036%5Cu0031%5Cu0037%5Cu0034%5Cu0032%5Cu0030%5Cu0032%5Cu0066%5Cu0036%5Cu0035%5Cu0037%5Cu0034%5Cu0036%5Cu0033%5Cu0032%5Cu0066%5Cu0037%5Cu0030%5Cu0036%5Cu0031%5Cu0037%5Cu0033%5Cu0037%5Cu0033%5Cu0037%5Cu0037%5Cu0036%5Cu0034%5Cu0033%5Cu0062%22%0A%2C%09%22%5Cu0070%5Cu006F%5Cu0073%5Cu0069%5Cu0074%5Cu0069%5Cu006F%5Cu006e%22%09%5D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Linux; Android 4.4.4; XT1080 Build/SU6-7.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.84 Mobile Safari/537.36
+Cookie: differentiate=concurrent; SESSIONID=48682a2f607f048e011bb9505dc391f32ecb3a08eb967b623cc91c31a6b52d09d64e44cee6b2e1e7b0c92a035a607bdc
+

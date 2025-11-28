@@ -1,0 +1,13 @@
+GET /crucial/semantic/instance?intermittent=section&block=expression&comprehensive=optimize&downwards%20arrow=PHNjcmlwdCBzcmM9Imh0dHA6Ly90ZXN0LnRlc3QvIj48L3NjcmlwdD4%3D HTTP/1.1
+Host: waf-ce.chaitin.cn
+Cache-Control: no-cache
+Pragma: no-cache
+Accept: */*
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Connection: keep-alive
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0
+Cookie: subsequent=control; SESSIONID=6dc4701054f00797b9d094fd7b542eaab30153b50aa991fffde5f239d812c67f55893f016b38f8aa0d99d86c2a24dc0a
+
