@@ -1,5 +1,5 @@
 DELETE /section/accordion/polyfill/customized/hyphen?cost-effective=authorization&streamline=322e2041207374726f6e6720756e696f6e2063616e2070726f7465637420656d706c6f7965657327207269676874732e0a HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

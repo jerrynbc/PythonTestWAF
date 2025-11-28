@@ -1,5 +1,5 @@
 DELETE /?confidentiality=3b20636174202f6574632f7061737377643b HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

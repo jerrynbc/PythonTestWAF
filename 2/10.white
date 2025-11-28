@@ -1,5 +1,5 @@
 POST /pop/asynchronous/homebrew/deprecated/complexity?disclaimer=inherit&double%20quotation%20mark=33332e20546865206c6574746572207761732073656e742066726f6d2074686520756e696f6e206f66666963652e0a HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

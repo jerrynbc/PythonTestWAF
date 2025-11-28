@@ -453,6 +453,9 @@ def parse_target_url(target: str) -> Tuple[str, int]:
     if not target:
         return None, None
     
+    # 去除前后空格
+    target = target.strip()
+    
     # 如果没有协议前缀，添加 http://
     if not target.startswith(('http://', 'https://')):
         target = 'http://' + target
@@ -509,6 +512,11 @@ def main():
     protocol = 'http'
     if args.target:
         target_host, protocol = parse_target_url(args.target)
+    else:
+        # 如果没有提供靶机地址，输出帮助菜单并退出
+        print("错误: 必须提供靶机地址 (-t/--target)")
+        parser.print_help()
+        sys.exit(1)
     
     # 只有明确指定了 --output 参数时，才输出 CSV 文件
     output_file = args.output

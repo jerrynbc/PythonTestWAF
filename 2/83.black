@@ -1,5 +1,5 @@
 HEAD /recursion/database?module=expression&ellipsis=block&dash=KSk7V0FJdEZPUgpkZUxBWSAtLSBwcmVkY2xhc3Nlc21hZW1vb3RoZXJvbGRzYWZhcmlzZXR0aW5nbm9uZXByZXZpZXdlcmFsd2F5cyAKJzA6MDo1Jy0t HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

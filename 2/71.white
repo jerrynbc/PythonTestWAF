@@ -1,5 +1,5 @@
 DELETE /analogy/hyphen/robust/latency/differentiate?significant=backslash&sophisticated=refresh&restriction=architecture HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

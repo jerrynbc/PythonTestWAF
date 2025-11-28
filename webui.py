@@ -90,19 +90,19 @@ def start_test():
         return jsonify({'status': 'error', 'message': '测试正在进行中，请稍后再试'})
     
     # 获取表单数据
-    sample_dir = request.form.get('sample_dir', '1')
-    target_url = request.form.get('target_url', '')
-    threads = request.form.get('threads', '10')
-    loss_rate = request.form.get('loss_rate', '0.0')
-    max_retries = request.form.get('max_retries', '3')
-    custom_code = request.form.get('custom_code', '403')
-    rst_detect = request.form.get('rst_detect', 'off')
-    keyword = request.form.get('keyword', '')
-    debug = request.form.get('debug', 'off')
-    output_csv = request.form.get('output_csv', 'off')
-    csv_path = request.form.get('csv_path', '')
-    output_samples = request.form.get('output_samples', 'off')
-    samples_path = request.form.get('samples_path', '')
+    sample_dir = request.form.get('sample_dir', '1').strip()
+    target_url = request.form.get('target_url', '').strip()
+    threads = request.form.get('threads', '10').strip()
+    loss_rate = request.form.get('loss_rate', '0.0').strip()
+    max_retries = request.form.get('max_retries', '3').strip()
+    custom_code = request.form.get('custom_code', '403').strip()
+    rst_detect = request.form.get('rst_detect', 'off').strip()
+    keyword = request.form.get('keyword', '').strip()
+    debug = request.form.get('debug', 'off').strip()
+    output_csv = request.form.get('output_csv', 'off').strip()
+    csv_path = request.form.get('csv_path', '').strip()
+    output_samples = request.form.get('output_samples', 'off').strip()
+    samples_path = request.form.get('samples_path', '').strip()
     
     # 构建命令
     cmd = [sys.executable, 'waf_tester.py', '-d', sample_dir]

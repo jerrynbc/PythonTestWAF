@@ -1,5 +1,5 @@
 POST /expression/dollar%20sign/backslash/optimize?provision=compromise&trajectory=alphabetically&schema=NDMuIFRoZSBkZWNpc2lvbiB3YXMgbWFkZSBieSB0aGUgdW5pb24gbWVtYmVycy4K HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

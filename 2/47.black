@@ -1,5 +1,5 @@
 PUT /simultaneously/post-mortem/bogus/rectify?disclaimer=data%20sovereignty&permanent=protocol HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

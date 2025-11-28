@@ -1,5 +1,5 @@
 PUT /slash/intrusive/aggregate/main?alter=NjEuIFRoZSBvZmZlciBjYW1lIGZyb20gdGhlIHVuaW9uJ3MgcHJlc2lkZW50Lgo%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

@@ -1,5 +1,5 @@
 GET /crucial/semantic/instance?intermittent=section&block=expression&comprehensive=optimize&downwards%20arrow=PHNjcmlwdCBzcmM9Imh0dHA6Ly90ZXN0LnRlc3QvIj48L3NjcmlwdD4%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

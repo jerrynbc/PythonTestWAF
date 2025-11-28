@@ -1,5 +1,5 @@
 GET /?resilience=range&database=32392e2054686579206761696e65642061206c6f742066726f6d2074686520756e696f6e2773206566666f7274732e0a HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

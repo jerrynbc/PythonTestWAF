@@ -1,5 +1,5 @@
 PUT /?vice%20versa=analyze&retrospective=data%20sovereignty&resolve=delete HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

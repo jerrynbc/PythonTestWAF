@@ -1,5 +1,5 @@
 PUT /tilde/oversight?parse=policy&mature=optional&access=undertake&worker=3.%20Select%20ingredients%20from%20the%20pantry%20to%20start%20cooking.%0A HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

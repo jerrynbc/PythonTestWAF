@@ -1,5 +1,5 @@
 DELETE /single%20quotation%20mark?retrospective=glossary&environment=38302e2053656c6563742061206d6574686f642066726f6d207468652070726f706f73656420737472617465676965732e0a HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

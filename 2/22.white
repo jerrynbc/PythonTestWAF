@@ -1,5 +1,5 @@
 GET /rank?under%20the%20hood=boss&vice%20versa=scope HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

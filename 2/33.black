@@ -1,5 +1,5 @@
 PUT /elasticity/process/recursion/durability?score=3c736372697074207372633d22687474703a2f2f746573742e746573742f223e3c2f7363726970743e HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

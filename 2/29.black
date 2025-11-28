@@ -1,5 +1,5 @@
 DELETE /?run=M2M3MzYzNzI2OTcwNzQyMDczNzI2MzNkMjI2ODc0NzQ3MDNhMmYyZjc0NjU3Mzc0MmU3NDY1NzM3NDJmMjIzZTNjMmY3MzYzNzI2OTcwNzQzZQ%3D%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

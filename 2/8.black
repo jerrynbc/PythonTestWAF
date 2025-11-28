@@ -1,5 +1,5 @@
 DELETE /concrete/composite/polyfill?ephemeral=attribute&plus=explicit&implement=PCFET0NUWVBFIGZvbyBbIDwhRU5USVRZIGV4dCBTWVNURU0gIi9saWdodGluZy9pcmlzL211bHRpL3Nsb3Qvc2hvcnRjdXQiID4gXT4%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

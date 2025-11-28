@@ -1,5 +1,5 @@
 GET /monetize/faceted%20search/ellipsis?bandwidth=module&tolerance=adapter&handler=evaluation HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

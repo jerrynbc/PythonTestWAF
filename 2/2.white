@@ -1,5 +1,5 @@
 POST /vulnerability/concrete/decouple/migrate?DOM=integration HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

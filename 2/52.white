@@ -1,5 +1,5 @@
 GET /impact/strangler%20pattern/underlying?base=meta&node=39352e20546865207265636f6d6d656e646174696f6e2063616d652066726f6d2074686520756e696f6e2e0a HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

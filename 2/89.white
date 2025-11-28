@@ -1,5 +1,5 @@
 HEAD /UUID%20/%20GUID/ratify/authorization/rapid?scenario=inter&failover=NzYuIFNlbGVjdCBhIG1vZGUgb2YgdHJhbnNwb3J0YXRpb24gZnJvbSB0aGUgb3B0aW9ucy4K HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

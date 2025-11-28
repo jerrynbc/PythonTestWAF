@@ -1,5 +1,5 @@
 HEAD /?hyphen=4f79426c5932687649474176596d6c754c324e68644341765a58526a4c3268766333527a59413d3d HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

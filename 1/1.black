@@ -1,5 +1,5 @@
 HEAD /snapshot?impression=rapid&optional=retrospective&taxonomy=impact&greater%20than=MSMgZW1pdHN2bWF4bm92ZW1iZXJwb3N0ZXJpbml0aWFsIAotLSBjb3VudGVycGFyYW1zY29wZWRzdXNwZW5kZWRlbmFibGVkIAphbmQNLS0gcmVuZGVyc2FuaXRpemVkY2VudGVyYm9sb2Fib3J0ZWRwdWJsaWNzdHlsZXN2cmllciAKMT0x HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

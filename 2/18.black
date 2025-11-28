@@ -1,5 +1,5 @@
 PUT /strength/traceability/score?remediation=MQAtLSBqdW1wcGFnZXN1cGRhdGVwcmVhY3RhZnRlcnVubG9hZCAKYW5EADE9MQ%3D%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

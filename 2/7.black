@@ -1,5 +1,5 @@
 PUT /single%20quotation%20mark/concrete/impersonate?HTML=distinction&seek=permutation&period=glossary HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

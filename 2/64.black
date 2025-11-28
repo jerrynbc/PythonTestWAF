@@ -1,5 +1,5 @@
 PUT /aggregate/hierarchical/ratify/interaction?resilience=base&occasion=dash&strangler%20pattern=granular&single%20quotation%20mark=3c21444f435459504520666f6f205b203c21454e54495459206578742053595354454d20222f6c6973742f63726f707065642f6f626a6563742f726566657272657222203e205d3e HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

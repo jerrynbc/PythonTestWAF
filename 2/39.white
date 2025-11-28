@@ -1,5 +1,5 @@
 POST /agnostic/rectify/internal/cost-efficient?marry=compromise&router=escalate&depreciation=tilde&amortization=Ny4gVGhlIGJvb2sgaXMgdHJhbnNsYXRlZCBmcm9tIEZyZW5jaCB0byBFbmdsaXNoLgo%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

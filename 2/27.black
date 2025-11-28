@@ -1,5 +1,5 @@
 GET /agnostic/left%20arrow?mechanism=analyze&seamless=MmUyZTJmNTc0NTQyMmQ0OTRlNDYyZjc3NjU2MjJlNzg2ZDZj HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

@@ -1,5 +1,5 @@
 GET /oversight/primary/false%20positive/distinction/hash?section=vulnerability&deprecated=vice%20versa&call=plus&automation=MzUyZTIwNTQ2ODY1MjA3NTZlNjk2ZjZlMjA2ODY1NmM2NDIwNjEyMDZkNjU2NTc0Njk2ZTY3MjA3NDZmMjA2NDY5NzM2Mzc1NzM3MzIwNzQ2ODY1MjA3Mzc0NzI2OTZiNjUyZTBh HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

@@ -1,5 +1,5 @@
 GET /?tolerance=vulnerability&revisit=discretely&bogus=4f5334675347556764326c736243427a5a57786c593351676447686c49474a6c63335167593246755a476c6b5958526c49475a79623230676447686c49474677634778705932467564484d7543673d3d HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

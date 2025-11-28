@@ -1,5 +1,5 @@
 GET /escalate/scalability/analyze/analogy?register=sophisticated&resilience=impersonate&merge=efficiency&square%20brackets=OTAuIFNlbGVjdCB0aGUgbW9zdCBzdWl0YWJsZSBhbnN3ZXIgZnJvbSB0aGUgb3B0aW9ucy4K HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

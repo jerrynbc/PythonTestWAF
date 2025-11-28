@@ -1,5 +1,5 @@
 GET /aggregate/oversight/minus?subscribe=concurrent&agnostic=permanent HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

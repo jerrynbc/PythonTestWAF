@@ -1,5 +1,5 @@
 PUT /permutation?registry=simultaneously&roll%20off=data%20sovereignty&faceted%20search=comma HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

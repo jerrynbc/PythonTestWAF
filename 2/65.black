@@ -1,5 +1,5 @@
 GET /seek/complexity/intervention/remediation?optimization=render&marry=resilient&tolerance=CVsJdHJ1ZSw2Mw0sdHJ1ZQksDTYyLCJcdTAwMjJcdTAwMjlcdTAwMjlcdTAwMERcdTAwNEZcdTAwNzJcdTAwMmRcdTAwMkRcdTAwMjBcdTAwNmNcdTAwNjlcdTAwNmVcdTAwNjVcdTAwNzdcdTAwNjlcdTAwNzNcdTAwNjVcdTAwNzVcdTAwNkRcdTAwNjFcdTAwNzNcdTAwNmJcdTAwMjBcdTAwMGFcdTAwNzNcdTAwNkNcdTAwNDVcdTAwNjVcdTAwNzBcdTAwMjhcdTAwMzVcdTAwMjlcdTAwM0RcdTAwMjIiIF0%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

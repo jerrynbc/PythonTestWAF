@@ -1,5 +1,5 @@
 PUT /provide?contrast=dispatch&source=392e20546865792074726176656c65642066726f6d204e657720596f726b20746f204c6f7320416e67656c657320627920747261696e2e0a HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

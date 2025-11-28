@@ -1,5 +1,5 @@
 GET /miscellaneous/provision/malware/catastrophic%20failover/build?allocate=asterisk&overhead=at&indecisive=M2MyNTY1NzY2MTZjMjA3MjY1NzE3NTY1NzM3NDI4MjI3MzYyMjIyOTI1M2U%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

@@ -1,5 +1,5 @@
 POST /capacity?agnostic=score&report=strangler%20pattern&restore=IikpCiMgbml1c2VuaGFuY2VkIApvUgAtLSBwYXN0ZXJuYXBhbmdsZXVucmVzb2x2ZWRub3NjcmlwdGxvY2FsZWluZGV4b2YgCnNsZUVQKDUpPSI%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

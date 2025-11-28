@@ -1,5 +1,5 @@
 POST /?miscellaneous=agility&region=imperative&differentiate=create&constraint=MzguIFNlbGVjdCB5b3VyIGZhdm9yaXRlIHF1b3RlIGZyb20gdGhlIGJvb2suCg%3D%3D HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

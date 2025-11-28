@@ -1,5 +1,5 @@
 PUT /init?concatenate=apply&post-mortem=curly%20brackets&catastrophic%20failover=thrilled&underscore=33382e2053656c65637420796f7572206661766f726974652071756f74652066726f6d2074686520626f6f6b2e0a HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*

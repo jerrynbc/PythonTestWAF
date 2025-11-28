@@ -1,5 +1,5 @@
 HEAD /restriction/monetize?elastic=tweak&less%20than=compliance&period=build&module=QWRNaU4iKQotLSBzaG91bGRwcm92aWRlcmdtYWlsbW92ZXNydG9rIApPciAtLSBvbGRzYWZhcmlzaG93ZnJvbW1hcmtzZ3RhbGtlZmZlY3RhdXRvY29tcGxldGVkaXNhYmxlbnVsbG1hcmtldCAKIjEiPSIxIi0t HTTP/1.1
-Host: waf-ce.chaitin.cn
+Host: example.com
 Cache-Control: no-cache
 Pragma: no-cache
 Accept: */*
