@@ -2,9 +2,9 @@
 
 用于测试 WAF 是否能够正确拦截黑样本，并允许白样本通过的自动化测试工具。
 
-![](picture/webui.png)
+![](images/webui.png)
 
-![](picture/waf_tester.png)
+![](images/waf_tester.png)
 
 ## 功能特性
 
@@ -65,7 +65,7 @@ WebUI 将在以下地址运行：
 2. **测试参数设置**：
    - 靶机地址（默认：http://127.0.0.1）
    - 并发线程数（默认：10）
-   - 模拟丢包率（默认：0.0）
+   - 超时设置（格式：连接超时,读取超时 秒，默认：10,30）
    - 最大重传次数（默认：3）
    - 自定义 WAF 拦截状态码（默认：403）
    - 检测 RST 拦截
@@ -98,6 +98,12 @@ python3 waf_tester.py -d 1 -t http://127.0.0.1:21000
 # 模拟 10% 丢包率，最大重传 5 次
 python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 --loss-rate 0.1 --max-retries 5
 
+# 设置自定义超时：连接超时 15 秒，读取超时 45 秒
+python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 --timeout 15,45
+
+# 设置统一超时：连接和读取超时均为 20 秒
+python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 --timeout 20
+
 # 启用调试模式
 python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 --debug
 
@@ -108,7 +114,7 @@ python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 --output results.csv
 python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 --split output_dir
 
 # 综合使用
-python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 --loss-rate 0.1 --max-retries 3 --debug --output results.csv --split output_dir
+python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 --timeout 15,45 --max-retries 3 --debug --output results.csv --split output_dir
 
 # 使用自定义状态码 404 作为 WAF 拦截标志
 python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 -C 404
@@ -135,6 +141,7 @@ python3 waf_tester.py -d 1 -t http://127.0.0.1:21000 -C 403 -R -K "WAF Blocked"
 | `--no-auto-dir` | | 不自动创建结果目录（已废弃，保留为兼容性） | `False` |
 | `--loss-rate` | | 模拟丢包率 (0.0-1.0) | `0.0` |
 | `--max-retries` | | 最大重传次数 | `3` |
+| `--timeout` | | 超时设置，格式：连接超时,读取超时（秒） | `10,30` |
 | `--debug` | | 启用调试输出 | `False` |
 | `-C, --custom-code` | | 自定义 WAF 拦截状态码（与 -R、-K 参数为 OR 关系，满足任一条件即视为被拦截） | `403` |
 | `-R, --rst-detect` | | 检测 RST 拦截（与 -C、-K 参数为 OR 关系，满足任一条件即视为被拦截） | `False` |

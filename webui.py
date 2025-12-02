@@ -93,7 +93,7 @@ def start_test():
     sample_dir = request.form.get('sample_dir', '1').strip()
     target_url = request.form.get('target_url', '').strip()
     threads = request.form.get('threads', '10').strip()
-    loss_rate = request.form.get('loss_rate', '0.0').strip()
+    timeout = request.form.get('timeout', '10,30').strip()
     max_retries = request.form.get('max_retries', '3').strip()
     custom_code = request.form.get('custom_code', '403').strip()
     rst_detect = request.form.get('rst_detect', 'off').strip()
@@ -111,7 +111,7 @@ def start_test():
         cmd.extend(['-t', target_url])
     
     cmd.extend(['--threads', threads])
-    cmd.extend(['--loss-rate', loss_rate])
+    cmd.extend(['--timeout', timeout])
     cmd.extend(['--max-retries', max_retries])
     cmd.extend(['-C', custom_code])
     
@@ -151,17 +151,18 @@ def start_test():
             )
             
             # 读取输出 - 使用更可靠的方式确保实时读取
-            for line in iter(current_process.stdout.readline, ''):
-                line = line.strip()
-                if line:
-                    test_logs.append(line)
-                    result_queue.put({'type': 'log', 'data': line})
+            if current_process.stdout:
+                for line in iter(current_process.stdout.readline, ''):
+                    line = line.strip()
+                    if line:
+                        test_logs.append(line)
+                        result_queue.put({'type': 'log', 'data': line})
             
             # 等待进程结束
-            current_process.wait()
-            
-            # 发送测试完成信号
-            result_queue.put({'type': 'complete', 'data': f'测试完成，退出码：{current_process.returncode}'})
+            if current_process:
+                current_process.wait()
+                # 发送测试完成信号
+                result_queue.put({'type': 'complete', 'data': f'测试完成，退出码：{current_process.returncode}'})
         except Exception as e:
             result_queue.put({'type': 'error', 'data': f'测试出错：{str(e)}'})
         finally:
@@ -403,8 +404,8 @@ if __name__ == '__main__':
                         <input type="number" id="threads" name="threads" value="10" min="1" max="100">
                     </div>
                     <div class="form-group">
-                        <label for="loss_rate">模拟丢包率</label>
-                        <input type="number" id="loss_rate" name="loss_rate" value="0.0" step="0.01" min="0.0" max="1.0">
+                        <label for="timeout">超时设置 (连接超时,读取超时 秒)</label>
+                        <input type="text" id="timeout" name="timeout" value="10,30" placeholder="10,30">
                     </div>
                     <div class="form-group">
                         <label for="max_retries">最大重传次数</label>

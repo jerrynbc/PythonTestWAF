@@ -52,7 +52,7 @@ def parse_http_request(content: str) -> Tuple[str, Dict[str, str], str]:
     
     return request_line, headers, body
 
-def send_request(request_line: str, headers: Dict[str, str], body: str, target_host: str = None, protocol: str = 'http', packet_loss_rate: float = 0.0, max_retries: int = 3, debug: bool = False) -> Tuple[int, str, str, bool]:
+def send_request(request_line: str, headers: Dict[str, str], body: str, target_host: str = None, protocol: str = 'http', packet_loss_rate: float = 0.0, max_retries: int = 3, debug: bool = False, timeout: Tuple[float, float] = (10, 30)) -> Tuple[int, str, str, bool]:
     """
     发送 HTTP 请求并返回状态码、响应和 RST 检测结果
     
@@ -65,6 +65,7 @@ def send_request(request_line: str, headers: Dict[str, str], body: str, target_h
         packet_loss_rate: 丢包率（0.0-1.0，默认：0.0）
         max_retries: 最大重传次数（默认：3）
         debug: 是否启用调试输出（默认：False）
+        timeout: 超时设置（连接超时, 读取超时），默认：(10, 30)秒
     
     Returns:
         (status_code, reason, response_body, is_rst_detected)
@@ -106,13 +107,8 @@ def send_request(request_line: str, headers: Dict[str, str], body: str, target_h
         content_length = len(body.encode('utf-8'))
         headers_to_send['Content-Length'] = str(content_length)
     
-    # 根据包大小动态调整 timeout：大包需要更长时间
-    # 但要合理，因为即使是大包，WAF 也可能快速返回
-    timeout = (10, 30)  # (连接超时, 读取超时)
-    if content_length > 102400:  # 大于 100KB
-        timeout = (10, 90)
-    elif content_length > 10240:  # 大于 10KB
-        timeout = (10, 60)
+    # 使用传入的超时参数，不再根据内容长度动态调整
+    # 如需不同的超时设置，可以通过函数参数进行配置
     
     # 重试逻辑
     for attempt in range(max_retries):
@@ -181,7 +177,7 @@ def send_request(request_line: str, headers: Dict[str, str], body: str, target_h
     return 0, f"All {max_retries} attempts failed", "", False
 
 
-def test_file_content(content: str, is_black: bool, target_host: str = None, protocol: str = 'http', packet_loss_rate: float = 0.0, max_retries: int = 3, debug: bool = False, custom_code: int = 403, rst_detect: bool = False, keyword: str = None) -> Tuple[str, bool, int, str, str, str]:
+def test_file_content(content: str, is_black: bool, target_host: str = None, protocol: str = 'http', packet_loss_rate: float = 0.0, max_retries: int = 3, debug: bool = False, custom_code: int = 403, rst_detect: bool = False, keyword: str = None, timeout: Tuple[float, float] = (10, 30)) -> Tuple[str, bool, int, str, str, str]:
     """
     测试文件内容
     
@@ -196,6 +192,7 @@ def test_file_content(content: str, is_black: bool, target_host: str = None, pro
         custom_code: 自定义 WAF 拦截状态码（默认：403）
         rst_detect: 是否检测 RST 拦截（默认：False）
         keyword: 响应 body 中的关键字，用于判断 WAF 拦截（默认：None）
+        timeout: 超时设置（连接超时, 读取超时），默认：(10, 30)秒
     
     Returns:
         (文件名, 是否符合预期, 状态码, 响应信息, 样本类型, 完整路径)
@@ -204,7 +201,7 @@ def test_file_content(content: str, is_black: bool, target_host: str = None, pro
     request_line, headers, body = parse_http_request(content)
     
     # 发送请求
-    status_code, reason, response_body, is_rst_detected = send_request(request_line, headers, body, target_host, protocol, packet_loss_rate, max_retries, debug)
+    status_code, reason, response_body, is_rst_detected = send_request(request_line, headers, body, target_host, protocol, packet_loss_rate, max_retries, debug, timeout)
     
     # 判断是否符合预期
     expected_blocked = is_black
@@ -229,17 +226,17 @@ def test_file_content(content: str, is_black: bool, target_host: str = None, pro
     return "", is_correct, status_code, reason, sample_type, content
 
 
-def test_file_wrapper(args: Tuple[Path, bool, str, str, float, int, bool, int, bool, str]) -> Dict:
+def test_file_wrapper(args: Tuple[Path, bool, str, str, float, int, bool, int, bool, str, Tuple[float, float]]) -> Dict:
     """
     包装函数，用于并发调用
     
     Args:
-        args: (file_path, is_black, target_host, protocol, packet_loss_rate, max_retries, debug, custom_code, rst_detect, keyword)
+        args: (file_path, is_black, target_host, protocol, packet_loss_rate, max_retries, debug, custom_code, rst_detect, keyword, timeout)
     
     Returns:
         结果字典
     """
-    file_path, is_black, target_host, protocol, packet_loss_rate, max_retries, debug, custom_code, rst_detect, keyword = args
+    file_path, is_black, target_host, protocol, packet_loss_rate, max_retries, debug, custom_code, rst_detect, keyword, timeout = args
     
     try:
         # 读取文件内容
@@ -247,7 +244,7 @@ def test_file_wrapper(args: Tuple[Path, bool, str, str, float, int, bool, int, b
             content = f.read()
         
         # 测试
-        _, is_correct, status_code, reason, sample_type, _ = test_file_content(content, is_black, target_host, protocol, packet_loss_rate, max_retries, debug, custom_code, rst_detect, keyword)
+        _, is_correct, status_code, reason, sample_type, _ = test_file_content(content, is_black, target_host, protocol, packet_loss_rate, max_retries, debug, custom_code, rst_detect, keyword, timeout)
         
         return {
             'file': file_path.name,
@@ -322,7 +319,7 @@ def copy_samples_to_directories(results: List[Dict], base_dir: str):
 def test_directory(directory: str, delay: float = 0.1, output_file: str = None, target_host: str = None, 
                    threads: int = 10, output_dir: str = None, auto_create_dir: bool = True, protocol: str = 'http',
                    packet_loss_rate: float = 0.0, max_retries: int = 3, debug: bool = False,
-                   custom_code: int = 403, rst_detect: bool = False, keyword: str = None):
+                   custom_code: int = 403, rst_detect: bool = False, keyword: str = None, timeout: Tuple[float, float] = (10, 30)):
     """
     测试目录中的所有样本文件
     
@@ -375,7 +372,7 @@ def test_directory(directory: str, delay: float = 0.1, output_file: str = None, 
     total_count = len(all_files)
     
     # 准备并发任务参数
-    tasks = [(file_path, is_black, target_host, protocol, packet_loss_rate, max_retries, debug, custom_code, rst_detect, keyword) for file_path, is_black in all_files]
+    tasks = [(file_path, is_black, target_host, protocol, packet_loss_rate, max_retries, debug, custom_code, rst_detect, keyword, timeout) for file_path, is_black in all_files]
     
     # 使用线程池并发执行
     with ThreadPoolExecutor(max_workers=threads) as executor:
@@ -494,6 +491,8 @@ def main():
                        help='模拟丢包率 (0.0-1.0，默认: 0.0)')
     parser.add_argument('--max-retries', type=int, default=3,
                        help='最大重传次数 (默认: 3)')
+    parser.add_argument('--timeout', type=str, default='10,30',
+                       help='超时设置，格式: 连接超时,读取超时（秒，默认: 10,30）')
     parser.add_argument('--debug', action='store_true',
                        help='启用调试输出 (默认: 禁用)')
     parser.add_argument('-C', '--custom-code', type=int, default=403,
@@ -529,11 +528,26 @@ def main():
     rst_detect = args.rst_detect
     keyword = args.keyword
     
+    # 超时参数解析
+    try:
+        timeout_parts = args.timeout.split(',')
+        if len(timeout_parts) == 1:
+            # 如果只提供一个值，同时作为连接超时和读取超时
+            connect_timeout = read_timeout = float(timeout_parts[0].strip())
+        else:
+            # 否则分别解析连接超时和读取超时
+            connect_timeout = float(timeout_parts[0].strip())
+            read_timeout = float(timeout_parts[1].strip())
+        timeout = (connect_timeout, read_timeout)
+    except (ValueError, IndexError):
+        # 解析失败，使用默认值
+        timeout = (10.0, 30.0)
+    
     # delay 参数已废弃，因为并发模式下不生效，但为兼容性保留
     test_directory(args.directory, delay=0.1, output_file=output_file, target_host=target_host, 
                    threads=args.threads, output_dir=output_dir, auto_create_dir=auto_create, protocol=protocol,
                    packet_loss_rate=args.loss_rate, max_retries=args.max_retries, debug=args.debug,
-                   custom_code=custom_code, rst_detect=rst_detect, keyword=keyword)
+                   custom_code=custom_code, rst_detect=rst_detect, keyword=keyword, timeout=timeout)
 
 
 if __name__ == '__main__':
