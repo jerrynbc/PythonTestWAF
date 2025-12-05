@@ -164,7 +164,9 @@ def send_request(request_line: str, headers: Dict[str, str], body: str, target_h
                 time.sleep(1)  # 连接错误也重试
                 continue
             else:
-                return 0, f"Connection Error: {str(e)}", "", is_rst
+                # 当没有debug参数时，只显示"Connection Error"，否则显示完整错误信息
+                error_msg = "Connection Error" if not debug else f"Connection Error: {str(e)}"
+                return 0, error_msg, "", is_rst
         except Exception as e:
             if debug:
                 print(f"[调试] 尝试 {attempt+1}/{max_retries}: 其他错误 - {str(e)}，等待 1 秒后重试")
@@ -257,13 +259,23 @@ def test_file_wrapper(args: Tuple[Path, bool, str, str, float, int, bool, int, b
             'content': content
         }
     except Exception as e:
+        # 判断是否是网络相关错误
+        error_str = str(e)
+        is_network_error = "ConnectionError" in error_str or "Connection error" in error_str.lower() or "Failed to establish a new connection" in error_str
+        
+        # 根据debug参数决定错误信息的详细程度
+        if is_network_error and not debug:
+            error_msg = "Connection Error"
+        else:
+            error_msg = f"错误: {error_str}"
+            
         return {
             'file': file_path.name,
             'file_path': str(file_path),
             'type': "黑样本" if is_black else "白样本",
             'is_correct': False,
             'status_code': 0,
-            'reason': f"错误: {str(e)}",
+            'reason': error_msg,
             'expected_blocked': is_black,
             'content': ""
         }
@@ -399,12 +411,28 @@ def test_directory(directory: str, delay: float = 0.1, output_file: str = None, 
     
     elapsed_time = time.time() - start_time
     
+    # 计算拦截率和误报率
+    black_total = sum(1 for r in results if r['expected_blocked'])
+    white_total = sum(1 for r in results if not r['expected_blocked'])
+    
+    # 黑样本被正确拦截的数量
+    black_blocked_correctly = sum(1 for r in results if r['expected_blocked'] and r['is_correct'])
+    
+    # 白样本被错误拦截的数量
+    white_blocked_incorrectly = sum(1 for r in results if not r['expected_blocked'] and not r['is_correct'])
+    
+    # 计算拦截率和误报率
+    detection_rate = black_blocked_correctly / black_total * 100 if black_total > 0 else 0
+    false_positive_rate = white_blocked_incorrectly / white_total * 100 if white_total > 0 else 0
+    
     # 输出统计信息
     print("\n" + "=" * 60)
     print("测试完成！")
     print(f"总样本数: {total_count}")
     print(f"符合预期: {correct_count} ({correct_count/total_count*100:.1f}%)")
     print(f"不符合预期: {total_count - correct_count} ({(total_count-correct_count)/total_count*100:.1f}%)")
+    print(f"拦截率: {detection_rate:.1f}% ({black_blocked_correctly}/{black_total} 黑样本被正确拦截)")
+    print(f"误报率: {false_positive_rate:.1f}% ({white_blocked_incorrectly}/{white_total} 白样本被错误拦截)")
     print(f"总耗时: {elapsed_time:.2f} 秒")
     print(f"平均速度: {total_count/elapsed_time:.2f} 样本/秒")
     print("=" * 60)
@@ -421,17 +449,18 @@ def test_directory(directory: str, delay: float = 0.1, output_file: str = None, 
         print(f"  符合预期: {correct_count} 个样本 -> {output_dir}/符合预期/")
         print(f"  不符合预期: {incorrect_count} 个样本 -> {output_dir}/不符合预期/")
     
-    # 显示不符合预期的样本
-    incorrect_samples = [r for r in results if not r['is_correct']]
-    if incorrect_samples:
-        print("\n不符合预期的样本:")
-        print("-" * 60)
-        for r in incorrect_samples:
-            status = f"{r['status_code']}" if r['status_code'] else r['reason']
-            if r['expected_blocked']:
-                print(f"✗ {r['file']} (黑样本，应被拦截但返回 {status})")
-            else:
-                print(f"✗ {r['file']} (白样本，不应被拦截但返回 403)")
+    # 只有当使用了--output或--split参数时，才显示不符合预期的样本
+    if output_file or output_dir:
+        incorrect_samples = [r for r in results if not r['is_correct']]
+        if incorrect_samples:
+            print("\n不符合预期的样本:")
+            print("-" * 60)
+            for r in incorrect_samples:
+                status = f"{r['status_code']}" if r['status_code'] else r['reason']
+                if r['expected_blocked']:
+                    print(f"✗ {r['file']} (黑样本，应被拦截但返回 {status})")
+                else:
+                    print(f"✗ {r['file']} (白样本，不应被拦截但返回 403)")
 
 
 def parse_target_url(target: str) -> Tuple[str, int]:
