@@ -2,9 +2,9 @@
 
 用于测试 WAF 是否能够正确拦截黑样本，并允许白样本通过的自动化测试工具。
 
-![](images/webui.png)
+![](templates/images/webui.png)
 
-![](images/waf_tester.png)
+![](templates/images/waf_tester.png)
 
 ## 功能特性
 

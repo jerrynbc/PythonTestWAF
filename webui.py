@@ -11,9 +11,6 @@ import subprocess
 import threading
 import time
 import queue
-import tempfile
-import csv
-from pathlib import Path
 
 app = Flask(__name__)
 
@@ -140,23 +137,51 @@ def start_test():
         is_testing = True
         
         try:
-            # 启动测试进程
+            # 打印后台调度的命令行参数
+            cmd_str = ' '.join([f"'{arg}'" if ' ' in arg or '"' in arg else arg for arg in cmd])
+            print(f"\n执行扫描任务：{cmd_str}\n")
+            print(f"执行命令列表: {cmd}")  # 额外打印命令列表便于调试
+            
+            # 启动测试进程 - 使用shell=False更安全
             current_process = subprocess.Popen(
-                cmd,
+                cmd,  # cmd已经是列表格式，直接使用
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
-                universal_newlines=True
+                universal_newlines=True,
+                shell=False
             )
             
             # 读取输出 - 使用更可靠的方式确保实时读取
             if current_process.stdout:
-                for line in iter(current_process.stdout.readline, ''):
-                    line = line.strip()
-                    if line:
-                        test_logs.append(line)
-                        result_queue.put({'type': 'log', 'data': line})
+                while is_testing and current_process.poll() is None:
+                    try:
+                        line = current_process.stdout.readline()
+                        if line:
+                            line = line.strip()
+                            if line:
+                                test_logs.append(line)
+                                result_queue.put({'type': 'log', 'data': line})
+                        else:
+                            # 防止无输出时的死循环
+                            time.sleep(0.1)
+                    except Exception as e:
+                        error_message = f"读取输出时出错: {str(e)}"
+                        result_queue.put({'type': 'error', 'data': error_message})
+                        test_logs.append(error_message)
+                        print(error_message)
+                        break
+                
+                # 读取剩余输出
+                try:
+                    for line in current_process.stdout:
+                        line = line.strip()
+                        if line:
+                            test_logs.append(line)
+                            result_queue.put({'type': 'log', 'data': line})
+                except Exception as e:
+                    print(f"读取剩余输出时出错: {str(e)}")
             
             # 等待进程结束
             if current_process:
@@ -195,10 +220,7 @@ def stop_test():
     else:
         return jsonify({'status': 'error', 'message': '没有正在进行的测试'})
 
-@app.route('/get_logs')
-def get_logs():
-    """获取完整日志"""
-    return jsonify({'logs': test_logs})
+
 
 @app.route('/get_sample_dirs')
 def get_sample_dirs():
@@ -524,14 +546,19 @@ if __name__ == '__main__':
                 },
                 body: new URLSearchParams(data)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.status === 'success') {
                     isTesting = true;
                     updateStatus('running');
                     // 开始轮询获取日志，调整为2秒一次以减少资源浪费
                     if (!logInterval) {
-                        logInterval = setInterval(fetchResults, 1000); // 调整为1秒一次
+                        logInterval = setInterval(fetchResults, 2000); // 调整为2秒一次，减少服务器压力
                     }
                 } else {
                     alert(data.message);
@@ -539,7 +566,7 @@ if __name__ == '__main__':
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('测试启动失败');
+                alert('测试启动失败: ' + error.message);
             });
         });
         
@@ -561,10 +588,25 @@ if __name__ == '__main__':
             });
         });
         
+        // 带超时的fetch函数
+        function fetchWithTimeout(url, options = {}, timeout = 10000) {
+            return Promise.race([
+                fetch(url, options),
+                new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('请求超时')), timeout)
+                )
+            ]);
+        }
+
         // 获取测试结果
         function fetchResults() {
-            fetch('/get_results')
-            .then(response => response.json())
+            fetchWithTimeout('/get_results', {}, 15000) // 添加15秒超时
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 const logsEl = document.getElementById('logs');
                 data.results.forEach(result => {
@@ -728,5 +770,5 @@ if __name__ == '__main__':
     print(f"python3 {os.path.basename(__file__)}")
     print("然后在浏览器中访问：http://localhost:5001")
     
-    # 启动 Flask 应用
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    # 启动 Flask 应用 - 配置为处理并发请求
+    app.run(debug=True, host='0.0.0.0', port=5001, threaded=True)

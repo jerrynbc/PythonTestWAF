@@ -305,14 +305,19 @@
                 },
                 body: new URLSearchParams(data)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.status === 'success') {
                     isTesting = true;
                     updateStatus('running');
                     // 开始轮询获取日志，调整为2秒一次以减少资源浪费
                     if (!logInterval) {
-                        logInterval = setInterval(fetchResults, 1000); // 调整为1秒一次
+                        logInterval = setInterval(fetchResults, 2000); // 调整为2秒一次，减少服务器压力
                     }
                 } else {
                     alert(data.message);
@@ -320,7 +325,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('测试启动失败');
+                alert('测试启动失败: ' + error.message);
             });
         });
         
@@ -342,10 +347,25 @@
             });
         });
         
+        // 带超时的fetch函数
+        function fetchWithTimeout(url, options = {}, timeout = 10000) {
+            return Promise.race([
+                fetch(url, options),
+                new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('请求超时')), timeout)
+                )
+            ]);
+        }
+
         // 获取测试结果
         function fetchResults() {
-            fetch('/get_results')
-            .then(response => response.json())
+            fetchWithTimeout('/get_results', {}, 15000) // 添加15秒超时
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 const logsEl = document.getElementById('logs');
                 data.results.forEach(result => {
