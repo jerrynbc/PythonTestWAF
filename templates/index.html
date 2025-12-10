@@ -222,14 +222,14 @@
                             <input type="checkbox" id="output_csv" name="output_csv">
                             <label for="output_csv">输出 CSV 结果</label>
                         </div>
-                        <input type="text" id="csv_path" name="csv_path" placeholder="results.csv" style="margin-top: 5px; display: none;">
+                        <input type="text" id="csv_path" name="csv_path" placeholder="tmp/results.csv" style="margin-top: 5px; display: none;">
                     </div>
                     <div class="form-group">
                         <div class="checkbox-group">
                             <input type="checkbox" id="output_samples" name="output_samples">
                             <label for="output_samples">输出样本目录</label>
                         </div>
-                        <input type="text" id="samples_path" name="samples_path" placeholder="test_results" value="test_results" style="margin-top: 5px; display: none;">
+                        <input type="text" id="samples_path" name="samples_path" placeholder="tmp/test_results" value="tmp/test_results" style="margin-top: 5px; display: none;">
                     </div>
                 </div>
                 
@@ -477,8 +477,8 @@
         // 更新带时间戳的默认值
         function updateTimestampDefaults() {
             const timestamp = generateTimestamp();
-            document.getElementById('csv_path').value = `results_${timestamp}.csv`;
-            document.getElementById('samples_path').value = `test_results_${timestamp}`;
+            document.getElementById('csv_path').value = `tmp/results_${timestamp}.csv`;
+            document.getElementById('samples_path').value = `tmp/test_results_${timestamp}`;
         }
         
         // 处理复选框显示/隐藏逻辑
@@ -491,7 +491,7 @@
                 if (this.checked) {
                     // 每次勾选时，更新文件名
                     const timestamp = generateTimestamp();
-                    csvPathInput.value = `results_${timestamp}.csv`;
+                    csvPathInput.value = `tmp/results_${timestamp}.csv`;
                 }
             });
             
@@ -503,7 +503,7 @@
                 if (this.checked) {
                     // 每次勾选时，更新文件名
                     const timestamp = generateTimestamp();
-                    samplesPathInput.value = `test_results_${timestamp}`;
+                    samplesPathInput.value = `tmp/test_results_${timestamp}`;
                 }
             });
         }

@@ -123,11 +123,20 @@ def start_test():
     
     # 处理输出CSV结果
     if output_csv == 'on' and csv_path:
+        # 确保路径前缀为tmp/
+        if not csv_path.startswith('tmp/'):
+            csv_path = f'tmp/{csv_path}'
         cmd.extend(['--output', csv_path])
     
     # 处理输出样本目录
     if output_samples == 'on' and samples_path:
+        # 确保路径前缀为tmp/
+        if not samples_path.startswith('tmp/'):
+            samples_path = f'tmp/{samples_path}'
         cmd.extend(['--split', samples_path])
+    
+    # 创建tmp目录（如果不存在）
+    os.makedirs('tmp', exist_ok=True)
     
     # 清空之前的日志
     test_logs = []
@@ -463,14 +472,14 @@ if __name__ == '__main__':
                             <input type="checkbox" id="output_csv" name="output_csv">
                             <label for="output_csv">输出 CSV 结果</label>
                         </div>
-                        <input type="text" id="csv_path" name="csv_path" placeholder="results.csv" style="margin-top: 5px; display: none;">
+                        <input type="text" id="csv_path" name="csv_path" placeholder="tmp/results.csv" style="margin-top: 5px; display: none;">
                     </div>
                     <div class="form-group">
                         <div class="checkbox-group">
                             <input type="checkbox" id="output_samples" name="output_samples">
                             <label for="output_samples">输出样本目录</label>
                         </div>
-                        <input type="text" id="samples_path" name="samples_path" placeholder="test_results" value="test_results" style="margin-top: 5px; display: none;">
+                        <input type="text" id="samples_path" name="samples_path" placeholder="tmp/test_results" value="tmp/test_results" style="margin-top: 5px; display: none;">
                     </div>
                 </div>
                 
@@ -717,8 +726,8 @@ if __name__ == '__main__':
         // 更新带时间戳的默认值
         function updateTimestampDefaults() {
             const timestamp = generateTimestamp();
-            document.getElementById('csv_path').value = `results_${timestamp}.csv`;
-            document.getElementById('samples_path').value = `test_results_${timestamp}`;
+            document.getElementById('csv_path').value = `tmp/results_${timestamp}.csv`;
+            document.getElementById('samples_path').value = `tmp/test_results_${timestamp}`;
         }
         
         // 处理复选框显示/隐藏逻辑
@@ -731,7 +740,7 @@ if __name__ == '__main__':
                 if (this.checked) {
                     // 每次勾选时，更新文件名
                     const timestamp = generateTimestamp();
-                    csvPathInput.value = `results_${timestamp}.csv`;
+                    csvPathInput.value = `tmp/results_${timestamp}.csv`;
                 }
             });
             
@@ -743,7 +752,7 @@ if __name__ == '__main__':
                 if (this.checked) {
                     // 每次勾选时，更新文件名
                     const timestamp = generateTimestamp();
-                    samplesPathInput.value = `test_results_${timestamp}`;
+                    samplesPathInput.value = `tmp/test_results_${timestamp}`;
                 }
             });
         }
