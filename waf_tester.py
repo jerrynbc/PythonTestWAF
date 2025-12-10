@@ -425,6 +425,19 @@ def test_directory(directory: str, delay: float = 0.1, output_file: str = None, 
     detection_rate = black_blocked_correctly / black_total * 100 if black_total > 0 else 0
     false_positive_rate = white_blocked_incorrectly / white_total * 100 if white_total > 0 else 0
     
+    # 只有当使用了--output或--split参数时，才显示不符合预期的样本
+    if output_file or output_dir:
+        incorrect_samples = [r for r in results if not r['is_correct']]
+        if incorrect_samples:
+            print("\n不符合预期的样本:")
+            print("-" * 60)
+            for r in incorrect_samples:
+                status = f"{r['status_code']}" if r['status_code'] else r['reason']
+                if r['expected_blocked']:
+                    print(f"✗ {r['file']} (黑样本，应被拦截但返回 {status})")
+                else:
+                    print(f"✗ {r['file']} (白样本，不应被拦截但返回 403)")
+    
     # 输出统计信息
     print("\n" + "=" * 60)
     print("测试完成！")
@@ -448,19 +461,6 @@ def test_directory(directory: str, delay: float = 0.1, output_file: str = None, 
         print(f"\n样本分类完成:")
         print(f"  符合预期: {correct_count} 个样本 -> {output_dir}/符合预期/")
         print(f"  不符合预期: {incorrect_count} 个样本 -> {output_dir}/不符合预期/")
-    
-    # 只有当使用了--output或--split参数时，才显示不符合预期的样本
-    if output_file or output_dir:
-        incorrect_samples = [r for r in results if not r['is_correct']]
-        if incorrect_samples:
-            print("\n不符合预期的样本:")
-            print("-" * 60)
-            for r in incorrect_samples:
-                status = f"{r['status_code']}" if r['status_code'] else r['reason']
-                if r['expected_blocked']:
-                    print(f"✗ {r['file']} (黑样本，应被拦截但返回 {status})")
-                else:
-                    print(f"✗ {r['file']} (白样本，不应被拦截但返回 403)")
 
 
 def parse_target_url(target: str) -> Tuple[str, int]:
