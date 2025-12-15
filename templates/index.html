@@ -244,6 +244,38 @@
         
         <div class="results-section">
             <h2>测试结果</h2>
+            
+            <!-- 进度条显示 -->
+            <div id="progress-section" style="margin-bottom: 20px; background-color: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
+                <h3 style="margin-bottom: 15px;">测试进度</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 100%;">
+                            <progress id="progress-bar" value="0" max="100" style="width: 100%; height: 20px; border-radius: 10px; background: #f0f0f0; overflow: hidden;"></progress>
+                            <style>
+                                /* 自定义进度条样式 */
+                                #progress-bar::-webkit-progress-bar {
+                                    background-color: #f0f0f0;
+                                    border-radius: 10px;
+                                }
+                                #progress-bar::-webkit-progress-value {
+                                    background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+                                    border-radius: 10px;
+                                    transition: width 0.3s ease;
+                                }
+                                #progress-bar::-moz-progress-bar {
+                                    background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+                                    border-radius: 10px;
+                                }
+                            </style>
+                        </div>
+                        <div id="progress-percentage" style="width: 60px; text-align: right; font-weight: bold;">0.0%</div>
+                    </div>
+                    <div id="progress-info" style="font-size: 14px; color: #666;">准备开始...</div>
+                </div>
+            </div>
+            
+            <!-- 日志显示 -->
             <div id="logs" class="logs"></div>
         </div>
     </div>
@@ -269,8 +301,8 @@
             }
         }
         
-        // 开始测试
-        document.getElementById('start-btn').addEventListener('click', function() {
+        // 开始测试函数
+        function startTest() {
             if (isTesting) return;
             
             // 处理表单数据，确保复选框的值正确
@@ -327,10 +359,10 @@
                 console.error('Error:', error);
                 alert('测试启动失败: ' + error.message);
             });
-        });
+        }
         
-        // 停止测试
-        document.getElementById('stop-btn').addEventListener('click', function() {
+        // 停止测试函数
+        function stopTest() {
             fetch('/stop_test')
             .then(response => response.json())
             .then(data => {
@@ -345,7 +377,7 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-        });
+        }
         
         // 带超时的fetch函数
         function fetchWithTimeout(url, options = {}, timeout = 10000) {
@@ -368,35 +400,64 @@
             })
             .then(data => {
                 const logsEl = document.getElementById('logs');
+                
+                // 处理结果
                 data.results.forEach(result => {
-                    const logLine = document.createElement('div');
-                    logLine.className = 'log-line';
-                    logLine.textContent = result.data;
-                    logsEl.appendChild(logLine);
-                    // 滚动到底部
-                    logsEl.scrollTop = logsEl.scrollHeight;
-                    
-                    if (result.type === 'complete' || result.type === 'error') {
-                        isTesting = false;
-                        updateStatus('idle');
-                        if (logInterval) {
-                            clearInterval(logInterval);
-                            logInterval = null;
-                        }
-                        
-                        // 显示结果链接
-                        displayResultsLinks();
-                        
-                        // 测试完成后自动关闭输出复选框
-                        document.getElementById('output_csv').checked = false;
-                        document.getElementById('output_samples').checked = false;
-                        
-                        // 隐藏对应的输入框
-                        document.getElementById('csv_path').style.display = 'none';
-                        document.getElementById('samples_path').style.display = 'none';
-                        
-                        // 测试完成后刷新样本目录列表
-                        refreshSampleDirs();
+                    switch(result.type) {
+                        case 'progress':
+                            // 处理进度更新
+                            const progressData = result.data;
+                            const progressBar = document.getElementById('progress-bar');
+                            const progressPercentage = document.getElementById('progress-percentage');
+                            const progressInfo = document.getElementById('progress-info');
+                            
+                            // 更新进度条
+                            progressBar.value = progressData.percentage;
+                            progressPercentage.textContent = `${progressData.percentage.toFixed(1)}%`;
+                            progressInfo.textContent = `正在测试: ${progressData.current}/${progressData.total} 个样本`;
+                            break;
+                            
+                        case 'log':
+                            // 普通日志，创建新行
+                            const logLine = document.createElement('div');
+                            logLine.className = 'log-line';
+                            logLine.textContent = result.data;
+                            logsEl.appendChild(logLine);
+                            // 滚动到底部
+                            logsEl.scrollTop = logsEl.scrollHeight;
+                            break;
+                            
+                        case 'complete':
+                        case 'error':
+                            isTesting = false;
+                            updateStatus('idle');
+                            if (logInterval) {
+                                clearInterval(logInterval);
+                                logInterval = null;
+                            }
+                            
+                            // 测试完成，更新进度条到100%
+                            const progressBarComplete = document.getElementById('progress-bar');
+                            const progressPercentageComplete = document.getElementById('progress-percentage');
+                            const progressInfoComplete = document.getElementById('progress-info');
+                            progressBarComplete.value = 100;
+                            progressPercentageComplete.textContent = '100.0%';
+                            progressInfoComplete.textContent = '测试完成！';
+                            
+                            // 显示结果链接
+                            displayResultsLinks();
+                            
+                            // 测试完成后自动关闭输出复选框
+                            document.getElementById('output_csv').checked = false;
+                            document.getElementById('output_samples').checked = false;
+                            
+                            // 隐藏对应的输入框
+                            document.getElementById('csv_path').style.display = 'none';
+                            document.getElementById('samples_path').style.display = 'none';
+                            
+                            // 测试完成后刷新样本目录列表
+                            refreshSampleDirs();
+                            break;
                     }
                 });
             })
@@ -510,6 +571,24 @@
         
         // 初始化
         window.onload = function() {
+            // 绑定按钮事件
+            const startBtn = document.getElementById('start-btn');
+            const stopBtn = document.getElementById('stop-btn');
+            
+            if (startBtn) {
+                startBtn.addEventListener('click', startTest);
+                console.log('开始测试按钮事件绑定成功');
+            } else {
+                console.error('开始测试按钮未找到！');
+            }
+            
+            if (stopBtn) {
+                stopBtn.addEventListener('click', stopTest);
+                console.log('停止测试按钮事件绑定成功');
+            } else {
+                console.error('停止测试按钮未找到！');
+            }
+            
             refreshSampleDirs();
             setupCheckboxHandlers();
             // 初始生成带时间戳的默认值

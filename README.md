@@ -24,9 +24,7 @@
 ## 安装依赖
 
 ### 基本依赖（仅命令行工具）
-```bash
-pip install requests --break-system-packages
-```
+无特殊依赖，使用 Python 标准库即可运行
 
 ### 完整依赖（包含 WebUI）
 ```bash
@@ -34,7 +32,6 @@ pip install -r requirements.txt --break-system-packages
 ```
 
 requirements.txt 包含以下依赖：
-- requests>=2.28.0
 - Flask>=3.0.0
 
 ## 使用方法

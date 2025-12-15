@@ -4,3 +4,5 @@ __pycache__/
 output
 output/
 tmp/
+.trae/
+.gitignore

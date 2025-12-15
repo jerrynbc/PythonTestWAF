@@ -9,14 +9,12 @@ import sys
 # 禁用输出缓冲，确保print输出能够实时显示
 sys.stdout.reconfigure(line_buffering=True)
 import argparse
-import requests
 import csv
 import shutil
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import List, Tuple, Dict
 import time
-from datetime import datetime
 
 
 def parse_http_request(content: str) -> Tuple[str, Dict[str, str], str]:
@@ -55,6 +53,7 @@ def parse_http_request(content: str) -> Tuple[str, Dict[str, str], str]:
 def send_request(request_line: str, headers: Dict[str, str], body: str, target_host: str = None, protocol: str = 'http', packet_loss_rate: float = 0.0, max_retries: int = 3, debug: bool = False, timeout: Tuple[float, float] = (10, 30)) -> Tuple[int, str, str, bool]:
     """
     发送 HTTP 请求并返回状态码、响应和 RST 检测结果
+    使用 socket 直接发送原始 HTTP 请求，支持自定义 HTTP 版本号
     
     Args:
         request_line: 请求行
@@ -71,44 +70,67 @@ def send_request(request_line: str, headers: Dict[str, str], body: str, target_h
         (status_code, reason, response_body, is_rst_detected)
     """
     import random
+    import socket
+    import ssl
     
-    # 解析请求行
+    # 解析请求行，保留完整的 HTTP 版本号
     parts = request_line.split()
     if len(parts) < 2:
-        return 0, "Invalid request line"
+        return 0, "Invalid request line", "", False
     
     method = parts[0]
     url_path = parts[1]
+    # 保留原始的 HTTP 版本号，如果有的话
+    http_version = parts[2] if len(parts) >= 3 else "HTTP/1.1"
     
     # 从 headers 获取 host
     host_in_header = headers.get('Host', headers.get('host', ''))
     
-    # 确定实际发送请求的 host
+    # 确定实际发送请求的 host 和 port
     if target_host:
         # 如果指定了靶机地址，使用它
-        host_for_url = target_host
+        if ':' in target_host:
+            host, port_str = target_host.split(':', 1)
+            port = int(port_str)
+        else:
+            host = target_host
+            port = 443 if protocol == 'https' else 80
     else:
         # 否则使用 Host header 中的地址
         if not host_in_header:
-            return 0, "No Host header found and no target specified"
-        host_for_url = host_in_header
+            return 0, "No Host header found and no target specified", "", False
+        if ':' in host_in_header:
+            host, port_str = host_in_header.split(':', 1)
+            port = int(port_str)
+        else:
+            host = host_in_header
+            port = 443 if protocol == 'https' else 80
     
-    # 构建完整的 URL
-    url = f"{protocol}://{host_for_url}{url_path}"
+    # 构建完整的原始 HTTP 请求
+    # 1. 请求行
+    full_request = f"{method} {url_path} {http_version}\r\n"
     
-    # 移除一些会自动处理的 headers
+    # 2. 构建 headers
     headers_to_send = headers.copy()
-    headers_to_send.pop('Content-Length', None)
-    headers_to_send.pop('content-length', None)
     
-    # 判断是否是大包，并根据大小调整 timeout
-    content_length = 0
-    if body:
-        content_length = len(body.encode('utf-8'))
+    # 如果没有 Content-Length，自动添加
+    if 'Content-Length' not in headers_to_send and 'content-length' not in headers_to_send:
+        content_length = len(body.encode('utf-8')) if body else 0
         headers_to_send['Content-Length'] = str(content_length)
     
-    # 使用传入的超时参数，不再根据内容长度动态调整
-    # 如需不同的超时设置，可以通过函数参数进行配置
+    # 添加所有 headers
+    for key, value in headers_to_send.items():
+        full_request += f"{key}: {value}\r\n"
+    
+    # 添加空行分隔 headers 和 body
+    full_request += "\r\n"
+    
+    # 添加请求体
+    if body:
+        full_request += body
+    
+    if debug:
+        print(f"[调试] 原始请求:\n{full_request}")
     
     # 重试逻辑
     for attempt in range(max_retries):
@@ -121,60 +143,85 @@ def send_request(request_line: str, headers: Dict[str, str], body: str, target_h
             continue
         
         try:
-            # 使用通用的 request 方法，统一处理所有方法
-            # data 参数在 body 存在时会被自动编码和发送
+            # 创建 socket
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(timeout[0])  # 连接超时
+            
+            # 连接到服务器
+            sock.connect((host, port))
+            
+            # 如果是 https，包装成 ssl socket
+            if protocol == 'https':
+                context = ssl.create_default_context()
+                context.check_hostname = False
+                context.verify_mode = ssl.CERT_NONE
+                sock = context.wrap_socket(sock, server_hostname=host)
+            
+            # 设置读取超时
+            sock.settimeout(timeout[1])
+            
+            # 发送请求
+            sock.sendall(full_request.encode('utf-8'))
+            
+            # 接收响应
+            response = b""
+            while True:
+                try:
+                    chunk = sock.recv(4096)
+                    if not chunk:
+                        break
+                    response += chunk
+                except socket.timeout:
+                    # 超时，停止接收
+                    break
+            
+            # 关闭连接
+            sock.close()
+            
+            # 解析响应
+            response_str = response.decode('utf-8', errors='ignore')
+            
             if debug:
-                print(f"[调试] 尝试 {attempt+1}/{max_retries}: 发送请求 - {method} {url}")
-                print(f"[调试] 请求头: {headers_to_send}")
-                print(f"[调试] 请求体大小: {content_length} 字节")
+                print(f"[调试] 原始响应:\n{response_str}")
             
-            response = requests.request(
-                method=method,
-                url=url,
-                headers=headers_to_send,
-                data=body if body else None,
-                timeout=timeout,
-                stream=False  # 不要流式传输
-            )
+            # 解析状态行
+            status_line = response_str.split('\r\n')[0]
+            status_parts = status_line.split()
             
-            response_body = response.text
+            if len(status_parts) < 2:
+                return 0, "Invalid response status line", response_str, False
             
-            if debug:
-                print(f"[调试] 响应: {response.status_code} {response.reason}")
-                print(f"[调试] 响应体大小: {len(response_body)} 字节")
+            status_code = int(status_parts[1])
+            reason = ' '.join(status_parts[2:]) if len(status_parts) > 2 else ""
             
-            return response.status_code, response.reason, response_body, False
+            return status_code, reason, response_str, False
             
-        except requests.exceptions.Timeout:
+        except socket.timeout:
             if debug:
                 print(f"[调试] 尝试 {attempt+1}/{max_retries}: 超时，等待 1 秒后重试")
             if attempt < max_retries - 1:
                 time.sleep(1)  # 重试前等待 1 秒
                 continue
             else:
-                return 0, f"Timeout (tried {max_retries} times, {content_length} bytes)", "", False
-        except requests.exceptions.ConnectionError as e:
-            is_rst = "Connection reset by peer" in str(e) or "ECONNRESET" in str(e)
+                return 0, f"Timeout (tried {max_retries} times)", "", False
+        except ConnectionResetError:
+            # 检测到 RST 重置
             if debug:
-                if is_rst:
-                    print(f"[调试] 尝试 {attempt+1}/{max_retries}: 检测到 RST 拦截 - {str(e)}，等待 1 秒后重试")
-                else:
-                    print(f"[调试] 尝试 {attempt+1}/{max_retries}: 连接错误 - {str(e)}，等待 1 秒后重试")
+                print(f"[调试] 尝试 {attempt+1}/{max_retries}: 检测到 RST 拦截，等待 1 秒后重试")
             if attempt < max_retries - 1:
                 time.sleep(1)  # 连接错误也重试
                 continue
             else:
-                # 当没有debug参数时，只显示"Connection Error"，否则显示完整错误信息
-                error_msg = "Connection Error" if not debug else f"Connection Error: {str(e)}"
-                return 0, error_msg, "", is_rst
+                return 0, "Connection Reset by Peer", "", True
         except Exception as e:
             if debug:
-                print(f"[调试] 尝试 {attempt+1}/{max_retries}: 其他错误 - {str(e)}，等待 1 秒后重试")
+                print(f"[调试] 尝试 {attempt+1}/{max_retries}: 错误 - {str(e)}，等待 1 秒后重试")
             if attempt < max_retries - 1:
                 time.sleep(1)  # 其他错误也重试
                 continue
             else:
-                return 0, f"Error: {str(e)}", "", False
+                error_msg = "Connection Error" if not debug else f"Connection Error: {str(e)}"
+                return 0, error_msg, "", False
     
     return 0, f"All {max_retries} attempts failed", "", False
 
@@ -396,18 +443,46 @@ def test_directory(directory: str, delay: float = 0.1, output_file: str = None, 
             result = future.result()
             results.append(result)
             
-            # 显示进度
-            sample_type = result['type']
-            expected_blocked = "应被拦截" if result['expected_blocked'] else "不应被拦截"
-            actual_status = f"{result['status_code']} ({result['reason']})" if result['status_code'] else f"错误: {result['reason']}"
-            
+            # 更新进度计数
             if result['is_correct']:
-                result_msg = "✓ 符合预期"
                 correct_count += 1
-            else:
-                result_msg = "✗ 不符合预期"
             
-            print(f"[{completed}/{total_count}] {result['file']} ({sample_type}) - {result_msg} - {actual_status}")
+            # 显示进度
+            if debug:
+                # debug模式下显示详细信息
+                sample_type = result['type']
+                expected_blocked = "应被拦截" if result['expected_blocked'] else "不应被拦截"
+                actual_status = f"{result['status_code']} ({result['reason']})" if result['status_code'] else f"错误: {result['reason']}"
+                
+                if result['is_correct']:
+                    result_msg = "✓ 符合预期"
+                else:
+                    result_msg = "✗ 不符合预期"
+                
+                print(f"[{completed}/{total_count}] {result['file']} ({sample_type}) - {result_msg} - {actual_status}")
+            else:
+                # 非debug模式下显示进度条
+                # 使用固定长度的进度条，确保跨平台一致性
+                progress = completed / total_count
+                bar_width = 50
+                filled_width = int(bar_width * progress)
+                empty_width = bar_width - filled_width
+                
+                # 使用█作为填充字符，-作为空字符
+                progress_bar = "█" * filled_width + "-" * empty_width
+                
+                # 格式化进度信息
+                percentage = f"{(progress * 100):6.1f}%"  # 固定宽度6字符，确保对齐
+                count_info = f"({completed:4d}/{total_count:4d})"  # 固定宽度，确保对齐
+                
+                # 使用sys.stdout.write和flush确保跨平台兼容性和实时更新
+                # 使用\r回到行首，并用空格清除可能的残留字符
+                sys.stdout.write(f"\r测试中: [{progress_bar}] {percentage} {count_info}")
+                sys.stdout.flush()
+        
+        # 测试结束后换行
+        if not debug:
+            print()
     
     elapsed_time = time.time() - start_time
     

@@ -162,16 +162,106 @@ def start_test():
                 shell=False
             )
             
-            # 读取输出 - 使用更可靠的方式确保实时读取
+            # 读取输出 - 使用更可靠的方式确保实时读取，支持进度条同一行显示
             if current_process.stdout:
+                buffer = ""  # 用于存储未处理的输出
+                last_progress_sent = 0  # 记录上次发送进度条的时间
+                progress_update_interval = 1.0  # 进度条更新间隔（秒）
+                current_progress = 0  # 当前进度百分比
+                min_progress_change = 5  # 最小进度变化百分比
+                
                 while is_testing and current_process.poll() is None:
                     try:
-                        line = current_process.stdout.readline()
-                        if line:
-                            line = line.strip()
-                            if line:
-                                test_logs.append(line)
-                                result_queue.put({'type': 'log', 'data': line})
+                        # 读取部分输出
+                        chunk = current_process.stdout.read(1024)
+                        if chunk:
+                            # 由于设置了text=True，chunk已经是字符串，不需要再decode
+                            buffer += chunk
+                            
+                            # 处理缓冲区中的内容
+                            while '\n' in buffer:
+                                line, buffer = buffer.split('\n', 1)
+                                line = line.strip()
+                                if line:
+                                    # 检查是否是进度条行
+                                    if line.startswith('测试中: ['):
+                                        # 解析进度百分比和计数信息
+                                        import re
+                                        
+                                        # 提取百分比 (例如: "  60.0%")
+                                        progress_match = re.search(r'([0-9.]+)%', line)
+                                        # 提取当前计数 (例如: "(  20/")
+                                        current_match = re.search(r'\((\s*\d+)/', line)
+                                        # 提取总计数 (例如: "/  50)")
+                                        total_match = re.search(r'/\s*(\d+)\)', line)
+                                        
+                                        if progress_match and current_match and total_match:
+                                            try:
+                                                progress = float(progress_match.group(1))
+                                                current = int(current_match.group(1).strip())
+                                                total = int(total_match.group(1).strip())
+                                                
+                                                # 只在进度变化超过阈值时发送更新
+                                                if abs(progress - current_progress) >= min_progress_change:
+                                                    # 发送进度更新，使用专门的消息类型
+                                                    result_queue.put({
+                                                        'type': 'progress',
+                                                        'data': {
+                                                            'percentage': progress,
+                                                            'current': current,
+                                                            'total': total
+                                                        }
+                                                    })
+                                                    current_progress = progress
+                                            except (ValueError, AttributeError):
+                                                # 如果解析失败，跳过这条进度信息
+                                                continue
+                                        # 不将进度条行添加到普通日志中
+                                    else:
+                                        # 普通日志，添加到日志列表
+                                        test_logs.append(line)
+                                        result_queue.put({'type': 'log', 'data': line})
+                            
+                            # 处理带有\r的进度条输出
+                            if '\r' in buffer:
+                                # 只保留\r后的内容，作为最新的进度条
+                                buffer = buffer.split('\r')[-1]
+                                if buffer.strip() and buffer.strip().startswith('测试中: ['):
+                                    # 解析进度百分比和计数信息
+                                    import re
+                                    line = buffer.strip()
+                                    
+                                    # 提取百分比
+                                    progress_match = re.search(r'([0-9.]+)%', line)
+                                    # 提取当前计数
+                                    current_match = re.search(r'\((\s*\d+)/', line)
+                                    # 提取总计数
+                                    total_match = re.search(r'/\s*(\d+)\)', line)
+                                    
+                                    if progress_match and current_match and total_match:
+                                        try:
+                                            progress = float(progress_match.group(1))
+                                            current = int(current_match.group(1).strip())
+                                            total = int(total_match.group(1).strip())
+                                            
+                                            current_time = time.time()
+                                            # 控制进度条发送频率和变化阈值
+                                            if (current_time - last_progress_sent >= progress_update_interval and 
+                                                abs(progress - current_progress) >= min_progress_change):
+                                                # 发送进度更新，使用专门的消息类型
+                                                result_queue.put({
+                                                    'type': 'progress',
+                                                    'data': {
+                                                        'percentage': progress,
+                                                        'current': current,
+                                                        'total': total
+                                                    }
+                                                })
+                                                current_progress = progress
+                                                last_progress_sent = current_time
+                                        except (ValueError, AttributeError):
+                                            # 如果解析失败，跳过这条进度信息
+                                            continue
                         else:
                             # 防止无输出时的死循环
                             time.sleep(0.1)
@@ -184,6 +274,14 @@ def start_test():
                 
                 # 读取剩余输出
                 try:
+                    # 处理缓冲区中剩余的内容
+                    if buffer:
+                        buffer = buffer.strip()
+                        if buffer:
+                            test_logs.append(buffer)
+                            result_queue.put({'type': 'log', 'data': buffer})
+                    
+                    # 读取剩余的完整行
                     for line in current_process.stdout:
                         line = line.strip()
                         if line:
@@ -494,6 +592,38 @@ if __name__ == '__main__':
         
         <div class="results-section">
             <h2>测试结果</h2>
+            
+            <!-- 进度条显示 -->
+            <div id="progress-section" style="margin-bottom: 20px; background-color: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
+                <h3 style="margin-bottom: 15px;">测试进度</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 100%;">
+                            <progress id="progress-bar" value="0" max="100" style="width: 100%; height: 20px; border-radius: 10px; background: #f0f0f0; overflow: hidden;"></progress>
+                            <style>
+                                /* 自定义进度条样式 */
+                                #progress-bar::-webkit-progress-bar {
+                                    background-color: #f0f0f0;
+                                    border-radius: 10px;
+                                }
+                                #progress-bar::-webkit-progress-value {
+                                    background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+                                    border-radius: 10px;
+                                    transition: width 0.3s ease;
+                                }
+                                #progress-bar::-moz-progress-bar {
+                                    background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+                                    border-radius: 10px;
+                                }
+                            </style>
+                        </div>
+                        <div id="progress-percentage" style="width: 60px; text-align: right; font-weight: bold;">0.0%</div>
+                    </div>
+                    <div id="progress-info" style="font-size: 14px; color: #666;">准备开始...</div>
+                </div>
+            </div>
+            
+            <!-- 日志显示 -->
             <div id="logs" class="logs"></div>
         </div>
     </div>
@@ -519,8 +649,8 @@ if __name__ == '__main__':
             }
         }
         
-        // 开始测试
-        document.getElementById('start-btn').addEventListener('click', function() {
+        // 开始测试函数
+        function startTest() {
             if (isTesting) return;
             
             // 处理表单数据，确保复选框的值正确
@@ -577,10 +707,10 @@ if __name__ == '__main__':
                 console.error('Error:', error);
                 alert('测试启动失败: ' + error.message);
             });
-        });
+        }
         
-        // 停止测试
-        document.getElementById('stop-btn').addEventListener('click', function() {
+        // 停止测试函数
+        function stopTest() {
             fetch('/stop_test')
             .then(response => response.json())
             .then(data => {
@@ -595,7 +725,7 @@ if __name__ == '__main__':
             .catch(error => {
                 console.error('Error:', error);
             });
-        });
+        }
         
         // 带超时的fetch函数
         function fetchWithTimeout(url, options = {}, timeout = 10000) {
@@ -618,35 +748,64 @@ if __name__ == '__main__':
             })
             .then(data => {
                 const logsEl = document.getElementById('logs');
+                
+                // 处理结果
                 data.results.forEach(result => {
-                    const logLine = document.createElement('div');
-                    logLine.className = 'log-line';
-                    logLine.textContent = result.data;
-                    logsEl.appendChild(logLine);
-                    // 滚动到底部
-                    logsEl.scrollTop = logsEl.scrollHeight;
-                    
-                    if (result.type === 'complete' || result.type === 'error') {
-                        isTesting = false;
-                        updateStatus('idle');
-                        if (logInterval) {
-                            clearInterval(logInterval);
-                            logInterval = null;
-                        }
-                        
-                        // 显示结果链接
-                        displayResultsLinks();
-                        
-                        // 测试完成后自动关闭输出复选框
-                        document.getElementById('output_csv').checked = false;
-                        document.getElementById('output_samples').checked = false;
-                        
-                        // 隐藏对应的输入框
-                        document.getElementById('csv_path').style.display = 'none';
-                        document.getElementById('samples_path').style.display = 'none';
-                        
-                        // 测试完成后刷新样本目录列表
-                        refreshSampleDirs();
+                    switch(result.type) {
+                        case 'progress':
+                            // 处理进度更新
+                            const progressData = result.data;
+                            const progressBar = document.getElementById('progress-bar');
+                            const progressPercentage = document.getElementById('progress-percentage');
+                            const progressInfo = document.getElementById('progress-info');
+                            
+                            // 更新进度条
+                            progressBar.value = progressData.percentage;
+                            progressPercentage.textContent = `${progressData.percentage.toFixed(1)}%`;
+                            progressInfo.textContent = `正在测试: ${progressData.current}/${progressData.total} 个样本`;
+                            break;
+                            
+                        case 'log':
+                            // 普通日志，创建新行
+                            const logLine = document.createElement('div');
+                            logLine.className = 'log-line';
+                            logLine.textContent = result.data;
+                            logsEl.appendChild(logLine);
+                            // 滚动到底部
+                            logsEl.scrollTop = logsEl.scrollHeight;
+                            break;
+                            
+                        case 'complete':
+                        case 'error':
+                            isTesting = false;
+                            updateStatus('idle');
+                            if (logInterval) {
+                                clearInterval(logInterval);
+                                logInterval = null;
+                            }
+                            
+                            // 测试完成，更新进度条到100%
+                            const progressBarComplete = document.getElementById('progress-bar');
+                            const progressPercentageComplete = document.getElementById('progress-percentage');
+                            const progressInfoComplete = document.getElementById('progress-info');
+                            progressBarComplete.value = 100;
+                            progressPercentageComplete.textContent = '100.0%';
+                            progressInfoComplete.textContent = '测试完成！';
+                            
+                            // 显示结果链接
+                            displayResultsLinks();
+                            
+                            // 测试完成后自动关闭输出复选框
+                            document.getElementById('output_csv').checked = false;
+                            document.getElementById('output_samples').checked = false;
+                            
+                            // 隐藏对应的输入框
+                            document.getElementById('csv_path').style.display = 'none';
+                            document.getElementById('samples_path').style.display = 'none';
+                            
+                            // 测试完成后刷新样本目录列表
+                            refreshSampleDirs();
+                            break;
                     }
                 });
             })
@@ -759,6 +918,24 @@ if __name__ == '__main__':
         
         // 初始化
         window.onload = function() {
+            // 绑定按钮事件
+            const startBtn = document.getElementById('start-btn');
+            const stopBtn = document.getElementById('stop-btn');
+            
+            if (startBtn) {
+                startBtn.addEventListener('click', startTest);
+                console.log('开始测试按钮事件绑定成功');
+            } else {
+                console.error('开始测试按钮未找到！');
+            }
+            
+            if (stopBtn) {
+                stopBtn.addEventListener('click', stopTest);
+                console.log('停止测试按钮事件绑定成功');
+            } else {
+                console.error('停止测试按钮未找到！');
+            }
+            
             refreshSampleDirs();
             setupCheckboxHandlers();
             // 初始生成带时间戳的默认值
